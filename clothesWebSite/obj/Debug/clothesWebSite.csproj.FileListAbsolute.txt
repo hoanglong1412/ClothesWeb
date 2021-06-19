@@ -156,3 +156,7 @@ F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.csproj.CoreCompileInputs.c
 F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.csproj.CopyComplete
 F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.dll
 F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.pdb
+F:\ClothesWeb\clothesWebSite\bin\EntityFramework.dll
+F:\ClothesWeb\clothesWebSite\bin\EntityFramework.SqlServer.dll
+F:\ClothesWeb\clothesWebSite\bin\EntityFramework.xml
+F:\ClothesWeb\clothesWebSite\bin\EntityFramework.SqlServer.xml
