@@ -14,7 +14,7 @@ namespace clothesWebSite.Controllers
         // GET: Clothes
         public ActionResult Index()
         {
-            IEnumerable<Product> listPro = productDAO.getList(8);
+            IEnumerable<Product> listPro = productDAO.getHotProduct(8);
             ViewBag.product = listPro;
             return View();
         }

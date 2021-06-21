@@ -23,6 +23,10 @@ namespace clothesWebSite.Models
         [StringLength(150)]
         public string type_name { get; set; }
 
+        public int state { get; set; }
+
+        public string content { get; set; }
+
         public DateTime? last_update { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

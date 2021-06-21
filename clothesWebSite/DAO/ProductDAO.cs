@@ -12,9 +12,9 @@ namespace clothesWebSite.DAO
 
 
         //lay ra num san pham giam theo ngay
-        public IEnumerable<Product> getList(int num)
+        public IEnumerable<Product> getHotProduct(int num)
         {
-            IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1).OrderByDescending(m => m.last_update).Take(num);
+            IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1).OrderByDescending(m => m.create_day).Take(num);
             return listProduct;
         }
     }

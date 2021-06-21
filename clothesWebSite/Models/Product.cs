@@ -45,6 +45,9 @@ namespace clothesWebSite.Models
 
         public DateTime? last_update { get; set; }
 
+        public DateTime? create_day { get; set; }
+        public string image_name { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentDetail> PaymentDetails { get; set; }
 
