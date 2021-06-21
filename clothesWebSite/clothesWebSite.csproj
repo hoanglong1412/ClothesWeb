@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClothesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAO\BannerDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,7 +185,6 @@
     <Content Include="img\getinspired2.jpg" />
     <Content Include="img\getinspired3.jpg" />
     <Content Include="img\grabbing.png" />
-    <Content Include="img\hinh-nen-mau-den-dep-nhat-22.png" />
     <Content Include="img\logo-small.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\main-slider1.jpg" />
@@ -198,10 +198,20 @@
     <Content Include="img\product2_2.jpg" />
     <Content Include="img\product3.jpg" />
     <Content Include="img\product3_2.jpg" />
+    <Content Include="img\product\product1.jpg" />
+    <Content Include="img\product\product2.jpg" />
+    <Content Include="img\product\product3.jpg" />
     <Content Include="img\slider1.jpg" />
     <Content Include="img\slider2.jpg" />
     <Content Include="img\slider3.jpg" />
     <Content Include="img\slider4.jpg" />
+    <Content Include="img\slider\banner_5_2.jpg" />
+    <Content Include="img\slider\banner_6_2.jpg" />
+    <Content Include="img\slider\banner_7_2.jpg" />
+    <Content Include="img\slider\banner_1_1.jpg" />
+    <Content Include="img\slider\banner_2_1.jpg" />
+    <Content Include="img\slider\banner_3_1.jpg" />
+    <Content Include="img\slider\banner_4_1.jpg" />
     <Content Include="img\template-mac.png" />
     <Content Include="js\front.js" />
     <Content Include="js\map.js" />
@@ -290,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\news\" />
     <Folder Include="vendor\font-awesome\less\" />
     <Folder Include="vendor\font-awesome\scss\" />
   </ItemGroup>
