@@ -9,6 +9,14 @@ namespace clothesWebSite.Models
     [Table("User")]
     public partial class User
     {
+
+        //Possible value for gender
+        static public readonly int FEMALE = 0;
+        static public readonly int MALE = 1;
+
+        //Possible value for user role
+        static public readonly int CUSTOMER = 0;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {

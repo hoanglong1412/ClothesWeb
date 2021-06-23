@@ -9,6 +9,20 @@ namespace clothesWebSite.Models
     [Table("Product")]
     public partial class Product
     {
+        //Possible value for state in products table
+        static public readonly int STATE_DEATH = 0;
+        static public readonly int STATE_INVISIBLE = 1;
+        static public readonly int STATE_VISIBLE = 2;
+
+        //Contract for product type gender
+        static public readonly char MALE = 'M';
+        static public readonly char FEMALE = 'F';
+        static public readonly char KID = 'K';
+
+        //Contract for product type
+        static public readonly char PANTS = 'Q';
+        static public readonly char SHIRTS = 'A';
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {

@@ -24,7 +24,7 @@ namespace clothesWebSite.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
