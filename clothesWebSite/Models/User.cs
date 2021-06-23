@@ -20,7 +20,6 @@ namespace clothesWebSite.Models
 
         public int user_role { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string full_name { get; set; }
 

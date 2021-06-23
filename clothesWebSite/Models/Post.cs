@@ -19,5 +19,8 @@ namespace clothesWebSite.Models
         public int state { get; set; }
 
         public int post_type { get; set; }
+
+        [StringLength(100)]
+        public string title { get; set; }
     }
 }

@@ -24,6 +24,8 @@ namespace clothesWebSite.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<Admin> Admin { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Banner>()
@@ -95,6 +97,15 @@ namespace clothesWebSite.Models
                 .HasMany(e => e.Payments)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Admin>()
+                .Property(e => e.username)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Admin>()
+                .Property(e => e.password)
+                .IsUnicode(false);
+
         }
     }
 }
