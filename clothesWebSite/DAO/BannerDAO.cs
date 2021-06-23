@@ -12,13 +12,13 @@ namespace clothesWebSite.DAO
         //Lay slider phia tren
         public IEnumerable<Banner> getBannerTop()
         {
-            IEnumerable<Banner> list = db.Banners.Where(m => m.state == 1);
+            IEnumerable<Banner> list = db.Banners.Where(m => m.state == Banner.VISIBLE_TOP);
             return list;
         }
         //lay slider phia duoi muc inspired 
         public IEnumerable<Banner> getBannerBottom()
         {
-            IEnumerable<Banner> list = db.Banners.Where(m => m.state == 2);
+            IEnumerable<Banner> list = db.Banners.Where(m => m.state == Banner.VISIBLE_BOTTOM);
             return list;
         }
     }

@@ -9,6 +9,10 @@ namespace clothesWebSite.Models
     [Table("Banner")]
     public partial class Banner
     {
+        static public readonly int VISIBLE_TOP = 1;
+        static public readonly int VISIBLE_BOTTOM = 2;
+        static public readonly int INVISIBLE = 0;
+
         [Key]
         public int banner_id { get; set; }
 
