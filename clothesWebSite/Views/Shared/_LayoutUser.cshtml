@@ -41,7 +41,14 @@
                     <div class="col-lg-6 text-center text-lg-right">
                         <ul class="menu list-inline mb-0">
                             <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="register.html">Register</a></li>
+                            @if (Session["user"] != null)
+                            {
+                                <li class="list-inline-item"><a href="/User/Login">@Session["username"]</a></li>
+                            }
+                            else
+                            {
+                                <li class="list-inline-item"><a href="/User/Login">Register</a></li>
+                            }
                             <li class="list-inline-item"><a href="contact.html">Contact</a></li>
                             <li class="list-inline-item"><a href="#">Recently viewed</a></li>
                         </ul>
@@ -56,12 +63,13 @@
                             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                         </div>
                         <div class="modal-body">
-                            <form action="customer-orders.html" method="post">
+                            <form action="/User/Login" method="post">
                                 <div class="form-group">
-                                    <input id="email-modal" type="text" placeholder="email" class="form-control">
+                                    <input id="email-modal" type="text" placeholder="email" class="form-control" name="email" required>
                                 </div>
+
                                 <div class="form-group">
-                                    <input id="password-modal" type="password" placeholder="password" class="form-control">
+                                    <input id="password-modal" type="password" placeholder="password" class="form-control" name="password" required>
                                 </div>
                                 <p class="text-center">
                                     <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
@@ -217,5 +225,8 @@
     <script src="~/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="~/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
     <script src="~/js/front.js"></script>
+    <script>
+        @ViewBag.Message
+    </script>
 </body>
 </html>
