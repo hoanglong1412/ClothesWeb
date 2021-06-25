@@ -8,7 +8,12 @@ namespace clothesWebSite.DAO
 {
     public class BannerDAO
     {
-        MyDBContext db = new MyDBContext();
+        private MyDBContext db;
+        public BannerDAO()
+        {
+            db = new MyDBContext();
+        }
+
         //Lay slider phia tren
         public IEnumerable<Banner> getBannerTop()
         {

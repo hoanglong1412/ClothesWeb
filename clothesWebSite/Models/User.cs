@@ -31,7 +31,7 @@ namespace clothesWebSite.Models
         [StringLength(100)]
         public string full_name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please input your phone in this field")]
         [StringLength(15)]
         public string phone { get; set; }
 
