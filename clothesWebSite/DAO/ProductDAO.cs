@@ -21,12 +21,8 @@ namespace clothesWebSite.DAO
             IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1).OrderByDescending(m => m.create_day).Take(num);
             return listProduct;
         }
-<<<<<<< HEAD
         //lay san pham moi nhung khong phai san pham dang hien trong trang chi tiet
-        public IEnumerable<Product> getHotProduct(int num,int id)
-=======
         public IEnumerable<Product> getHotProduct(int num, int id)
->>>>>>> fb2f372560277184a9749a7fa805f350122cb8ed
         {
             IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1 && m.product_id != id).OrderByDescending(m => m.create_day).Take(num);
             return listProduct;
@@ -37,12 +33,8 @@ namespace clothesWebSite.DAO
             Product Product = db.Products.Where(m => m.state == 1 && m.product_id == id).FirstOrDefault();
             return Product;
         }
-<<<<<<< HEAD
         //lay san pham theo loai theo so luon va khong lay san pham dang co tren chi tiet san pham
-        public IEnumerable<Product> getSameCategory(string catelogyId,int num,int id)
-=======
         public IEnumerable<Product> getSameCategory(String catelogyId, int num, int id)
->>>>>>> fb2f372560277184a9749a7fa805f350122cb8ed
         {
             IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1 && m.type_id == catelogyId && m.product_id != id).OrderByDescending(m => m.create_day).Take(num);
             return listProduct;
