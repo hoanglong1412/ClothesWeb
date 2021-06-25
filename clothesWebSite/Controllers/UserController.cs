@@ -20,20 +20,32 @@ namespace clothesWebSite.Controllers
         [HttpPost]
         public ActionResult LoginConfirm(FormCollection form)
         {
-            String email = form["email"];
+            String phone = form["phone"];
             String password = form["password"];
-            User user = userDAO.getRow(email, password);
-            if(user != null)
+            if(String.IsNullOrEmpty(phone))
             {
-                ViewBag.Message = "alert('dang nhap thanh cong')";
-                Session["user"] = user;
-                Session["username"] = user.full_name;
-                return RedirectToAction("Index", "Clothes");
+                ViewData["Erro1"] = "please enter your phone number";
+            }
+            else if (String.IsNullOrEmpty(password))
+            {
+                ViewBag.Erro2 = "please enter your password";
             }
             else
             {
-                ViewBag.Message = "Wrong email or password";
+                User user = userDAO.getRow(phone, password);
+                if (user != null)
+                {
+                    ViewBag.Message = "alert('dang nhap thanh cong')";
+                    Session["user"] = user;
+                    Session["username"] = user.full_name;
+                    return RedirectToAction("Index", "Clothes");
+                }
+                else
+                {
+                    ViewBag.Message = "Wrong phone or password";
+                }
             }
+           
 
             return View("Login");
         }
@@ -42,17 +54,42 @@ namespace clothesWebSite.Controllers
         public ActionResult RegisterConfirm(FormCollection form)
         {
             String name = form["name"];
-            String email = form["email"];
+            String phone = form["phone"];
             String password = form["password"];
-            User user = new User();
-            user.full_name = name;
-            user.email = email;
-            user.password = password;
-            user.user_role = 0;
-            user.phone = "0123456789";
-            db.Users.Add(user);
-            db.SaveChanges();
-            ViewBag.Message2 = "Successfully";
+            String repass = form["re_password"];
+            if (String.IsNullOrEmpty(phone))
+            {
+                ViewBag.ErrorRe1 = "please enter your phone number";
+            }
+            else if(userDAO.checkPhone(phone) == false)
+            {
+                ViewBag.ErrorRe2 = "This account is already exist";
+            }
+            else if (String.IsNullOrEmpty(name))
+            {
+                ViewBag.ErrorRe3 = "please enter your name";
+            }
+            else if (String.IsNullOrEmpty(password))
+            {
+                ViewBag.ErrorRe4 = "please enter your password";
+            }
+            else if (password != repass)
+            {
+                ViewBag.ErrorRe5 = "Your re-password is wrong, please enter again";
+            }
+            else
+            {
+                User user = new User();
+                user.full_name = name;
+                user.password = password;
+                user.user_role = 0;
+                user.phone = phone;
+                db.Users.Add(user);
+                db.SaveChanges();
+                ViewBag.Message2 = "Register Successful! Now you can Login in the next form -->";
+                ViewBag.phone = phone;
+                return View("Login");
+            }
             return View("Login");
         }
     }

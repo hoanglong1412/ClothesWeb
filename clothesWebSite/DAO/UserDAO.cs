@@ -8,10 +8,19 @@ namespace clothesWebSite.DAO
     public class UserDAO
     {
         MyDBContext db = new MyDBContext();
-        public User getRow(String email,String password)
+        public User getRow(String phone, String password)
         {
-            User user = db.Users.Where(m => m.email == email && m.password == password).FirstOrDefault();
+            User user = db.Users.Where(m => m.phone == phone && m.password == password).FirstOrDefault();
             return user;
+        }
+        public Boolean checkPhone(String phone)
+        {
+            User user = db.Users.Where(m => m.phone == phone).FirstOrDefault();
+            if(user == null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
