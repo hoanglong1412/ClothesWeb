@@ -132,6 +132,7 @@
     <Compile Include="DAO\BannerDAO.cs" />
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
+    <Compile Include="DAO\ProductTypeDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -301,6 +302,9 @@
     <Content Include="vendor\popper.js\umd\popper.js.flow" />
     <Content Include="Views\Clothes\ProductDetail.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Clothes\ProductCategoty.cshtml" />
+    <Content Include="Views\Clothes\ProductAllCategoty.cshtml" />
+    <Content Include="Views\Clothes\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

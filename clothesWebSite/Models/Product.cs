@@ -15,13 +15,13 @@ namespace clothesWebSite.Models
         static public readonly int STATE_VISIBLE = 2;
 
         //Contract for product type gender
-        static public readonly char MALE = 'M';
-        static public readonly char FEMALE = 'F';
-        static public readonly char KID = 'K';
+        static public readonly String MALE = "M";
+        static public readonly String FEMALE = "F";
+        static public readonly String KID = "K";
 
         //Contract for product type
-        static public readonly char PANTS = 'Q';
-        static public readonly char SHIRTS = 'A';
+        static public readonly String PANTS = "Q";
+        static public readonly String SHIRTS = "A";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()

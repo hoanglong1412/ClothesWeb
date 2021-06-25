@@ -61,3 +61,4 @@ F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.csproj.CoreCompileInputs.c
 F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.csproj.CopyComplete
 F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.dll
 F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.pdb
+F:\ClothesWeb\clothesWebSite\obj\Debug\clothesWebSite.csproj.AssemblyReference.cache
