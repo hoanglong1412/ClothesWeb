@@ -39,28 +39,26 @@ namespace clothesWebSite.Controllers
         }
         public ActionResult ProductCategoty(string id)
         {
-            IEnumerable<ProductType> listTypeM = productTypeDAO.getListM();
-            IEnumerable<ProductType> listTypeF = productTypeDAO.getListF();
-            IEnumerable<ProductType> listTypeK = productTypeDAO.getListK();
             IEnumerable<Product> listPro = productDAO.getSameCategory(id);
-            ViewBag.listTypeM = listTypeM;
-            ViewBag.listTypeF = listTypeF;
-            ViewBag.listTypeK = listTypeK;
             ViewBag.listPro = listPro;
             return View();
         }
         public ActionResult ProductAllCategoty()
         {
-            IEnumerable<ProductType> listTypeM = productTypeDAO.getListM();
-            IEnumerable<ProductType> listTypeF = productTypeDAO.getListF();
-            IEnumerable<ProductType> listTypeK = productTypeDAO.getListK();
             IEnumerable<Product> listPro = productDAO.getList();
-            ViewBag.listTypeM = listTypeM;
-            ViewBag.listTypeF = listTypeF;
-            ViewBag.listTypeK = listTypeK;
             ViewBag.listPro = listPro;
             return View();
         }
-   
+        public ActionResult Category()
+        {
+            IEnumerable<ProductType> listTypeM = productTypeDAO.getListM();
+            IEnumerable<ProductType> listTypeF = productTypeDAO.getListF();
+            IEnumerable<ProductType> listTypeK = productTypeDAO.getListK();
+            ViewBag.listTypeM = listTypeM;
+            ViewBag.listTypeF = listTypeF;
+            ViewBag.listTypeK = listTypeK;
+            return PartialView();
+        }
+
     }
 }

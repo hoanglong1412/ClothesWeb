@@ -9,42 +9,31 @@ namespace clothesWebSite.DAO
 {
     public class ProductTypeDAO
     {
-        MyDBContext db = new MyDBContext();
-
-        public IEnumerable<ProductType> getList(int key)
+        private MyDBContext db;
+        public ProductTypeDAO()
         {
-            IEnumerable<ProductType> list;
-            if (key == 1)
-            {
-                list = db.ProductTypes.Where(m => m.type_id.Contains(Product.MALE));
-                return list;
-            }
-            else if (key == 2)
-            {
-                list = db.ProductTypes.Where(m => m.type_id.Contains(Product.FEMALE));
-                return list;
-            }
-            else
-            {
-                list = db.ProductTypes.Where(m => m.type_id.Contains(Product.KID));
-                return list;
-            }
+            db = new MyDBContext();
         }
+
+        //lay danh sach tat cac cac loai sasn pham
         public IEnumerable<ProductType> getList()
         {
             IEnumerable<ProductType> list = db.ProductTypes;
             return list;
         }
+        //lay tat ca loai san pham nam
         public IEnumerable<ProductType> getListM()
         {
             IEnumerable<ProductType> list = db.ProductTypes.Where(m => m.type_id.Contains(Product.MALE));
             return list;
         }
+        //lay tat ca loai san pham nu
         public IEnumerable<ProductType> getListF()
         {
             IEnumerable<ProductType> list = db.ProductTypes.Where(m => m.type_id.Contains(Product.FEMALE));
             return list;
         }
+        //lay tat ca loai san pham tre em
         public IEnumerable<ProductType> getListK()
         {
             IEnumerable<ProductType> list = db.ProductTypes.Where(m => m.type_id.Contains(Product.KID));

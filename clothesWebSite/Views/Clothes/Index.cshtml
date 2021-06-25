@@ -78,11 +78,11 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="/Clothes/ProductDetail/@item.product_id"><img src="~/img/product/@item.image_name" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})"><img src="~/img/product/@item.image_name" alt="" class="img-fluid"></a></div>
                                     </div>
-                                </div><a href="/Clothes/ProductDetail/@item.product_id" class="invisible"><img src="~/img/product/@item.image_name" alt="" class="img-fluid"></a>
+                                </div><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="invisible"><img src="~/img/product/@item.image_name" alt="" class="img-fluid"></a>
                                 <div class="text">
-                                    <h3><a href="/Clothes/ProductDetail/@item.product_id">@item.product_name</a></h3>
+                                    <h3><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})">@item.product_name</a></h3>
                                     <p class="price">
                                         <del></del>$@item.sale_price
                                     </p>
@@ -164,16 +164,6 @@
                             </div>
                         </div>
                     }
-
-                    @*<div class="col-sm-6">
-                        <div class="post">
-                            <h4><a href="post.html">Who is who - example blog post</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a></p>
-                            <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p>
-                        </div>
-                    </div>*@
                 </div>
                 <!-- /#blog-homepage-->
             </div>
