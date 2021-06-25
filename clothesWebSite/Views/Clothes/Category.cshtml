@@ -1,0 +1,31 @@
+﻿<div class="card-body">
+    <ul class="nav nav-pills flex-column category-menu">
+        <li>
+            <a href="" class="nav-link">Men <span class="badge badge-secondary">42</span></a>
+            <ul class="list-unstyled">
+                @foreach (var item in ViewBag.listTypeM)
+                {
+                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id})" class="nav-link">@item.type_name</a></li>
+                }
+            </ul>
+        </li>
+        <li>
+            <a href="" class="nav-link active">Ladies  <span class="badge badge-light">123</span></a>
+            <ul class="list-unstyled">
+                @foreach (var item in ViewBag.listTypeF)
+                {
+                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id})" class="nav-link">@item.type_name</a></li>
+                }
+            </ul>
+        </li>
+        <li>
+            <a href="" class="nav-link">Kids  <span class="badge badge-secondary">11</span></a>
+            <ul class="list-unstyled">
+                @foreach (var item in ViewBag.listTypeK)
+                {
+                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id})" class="nav-link">@item.type_name</a></li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
