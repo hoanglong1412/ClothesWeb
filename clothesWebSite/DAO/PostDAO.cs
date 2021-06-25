@@ -8,7 +8,12 @@ namespace clothesWebSite.DAO
 {
     public class PostDAO
     {
-        MyDBContext db = new MyDBContext();
+
+        private MyDBContext db;
+        public PostDAO()
+        {
+            db = new MyDBContext();
+        }
 
 
         //lay ra num san pham giam theo ngay

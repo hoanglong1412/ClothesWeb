@@ -24,17 +24,19 @@
                         <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
                         <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
                         <hr>
-                         <p class="text-danger"> @ViewBag.Message2</p>
+                        <p class="text-danger"> @ViewBag.Message2</p>
                         <form action="/User/RegisterConfirm" method="post">
-                            
+
                             @*<div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" type="text" class="form-control" name="email">
-                            </div>
-                            <p class="text-danger"> @ViewBag.ErrorRe2</p>*@
+                                    <label for="email">Email</label>
+                                    <input id="email" type="text" class="form-control" name="email">
+                                </div>
+                                <p class="text-danger"> @ViewBag.ErrorRe2</p>*@
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input id="phone" type="tel" pattern="[0-9]{6,11}" class="form-control" name="phone">
+                                <input id="phone" type="tel" pattern="[0-9]{6,11}" class="form-control" name="phone" required
+                                       oninvalid="this.setCustomValidity('Phone format is not valid')"
+                                       oninput="this.setCustomValidity('')">
                             </div>
                             <p class="text-danger"> @ViewBag.ErrorRe1</p>
                             <p class="text-danger"> @ViewBag.ErrorRe2</p>
@@ -46,16 +48,19 @@
                             <p class="text-danger"> @ViewBag.ErrorRe3</p>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" class="form-control" name="password">
+                                <input id="password" type="password" class="form-control" name="password" required 
+                                       onkeyup="check_password();">
                             </div>
                             <p class="text-danger"> @ViewBag.ErrorRe4</p>
                             <div class="form-group">
                                 <label for="password">Re-Password</label>
-                                <input id="password" type="password" class="form-control" name="re_password">
+                                <input id="re_password" type="password" class="form-control" name="re_password" required
+                                       onkeyup="check_password();">
+                                <span id='message'></span>
                             </div>
                             <p class="text-danger"> @ViewBag.ErrorRe5</p>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
+                                <button id ="submit" type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
                             </div>
                         </form>
                     </div>
@@ -69,7 +74,7 @@
                         <form action="/User/LoginConfirm" method="post">
                             <div class="form-group">
                                 <label for="email">Phone Number</label>
-                                <input id="email" type="text" class="form-control" name="phone"  value="@ViewBag.phone">
+                                <input id="email" type="text" class="form-control" name="phone" value="@ViewBag.phone">
                             </div>
                             <p class="text-danger"> @ViewData["Erro1"]</p>
                             <div class="form-group">
@@ -91,4 +96,15 @@
 </div>
 <script>
     @ViewBag.Message
+
+    var check_password = function () {
+        if (document.getElementById('password').value != document.getElementById('re_password').value) {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Password is not matching';
+            document.getElementById('submit').disabled = true;
+        } else {
+            document.getElementById('message').innerHTML = '';
+            document.getElementById('submit').disabled = false;
+        }
+    }
 </script>

@@ -12,6 +12,7 @@ namespace clothesWebSite.Controllers
     {
         MyDBContext db = new MyDBContext();
         UserDAO userDAO = new UserDAO();
+ 
         public ActionResult Login()
         {
             return View();
@@ -79,13 +80,7 @@ namespace clothesWebSite.Controllers
             }
             else
             {
-                User user = new User();
-                user.full_name = name;
-                user.password = password;
-                user.user_role = 0;
-                user.phone = phone;
-                db.Users.Add(user);
-                db.SaveChanges();
+                userDAO.addUser(phone, name, password);
                 ViewBag.Message2 = "Register Successful! Now you can Login in the next form -->";
                 ViewBag.phone = phone;
                 return View("Login");
