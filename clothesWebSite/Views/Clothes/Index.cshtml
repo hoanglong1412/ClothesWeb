@@ -129,7 +129,7 @@
                         @foreach (var item in ViewBag.bannerB)
                         {
                             String i = "banner_" + @item.banner_id + "_1.jpg";
-                            <div class="item"><a href="#"><img src="~/img/slider/@i" alt="Get inspired" class="img-fluid"></a></div>
+                            <div class="item"><a href="@Url.Action("AllPost","Clothes")"><img src="~/img/slider/@i" alt="Get inspired" class="img-fluid"></a></div>
                         }
                    
                     </div>
@@ -145,7 +145,7 @@
             <div class="container">
                 <div class="col-md-12">
                     <h3 class="text-uppercase">From our blog</h3>
-                    <p class="lead mb-0">What's new in the world of fashion? <a href="blog.html">Check our blog!</a></p>
+                    <p class="lead mb-0">What's new in the world of fashion? <a href="@Url.Action("AllPost","Clothes")">Check our blog!</a></p>
                 </div>
             </div>
         </div>
@@ -156,11 +156,11 @@
                     {
                         <div class="col-sm-6">
                             <div class="post">
-                                <h4><a href="post.html">@item.title</a></h4>
+                                <h4><a href="@Url.Action("PostDeitail","Clothes",new{  id = item.post_id })">@item.title</a></h4>
                                 <p class="author-category">Update @item.last_update</p>
                                 <hr>
                                 <p class="intro">@item.content</p>
-                                <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p>
+                                <p class="read-more"><a href="@Url.Action("PostDeitail","Clothes",new{  id = item.post_id })" class="btn btn-primary">Continue reading</a></p>
                             </div>
                         </div>
                     }

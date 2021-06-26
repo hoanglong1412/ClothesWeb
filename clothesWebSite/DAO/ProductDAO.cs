@@ -51,5 +51,30 @@ namespace clothesWebSite.DAO
             IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1 && m.type_id == catelogyId).OrderByDescending(m => m.create_day);
             return listProduct;
         }
+        //lay tong hang
+        public int ProductCount()
+        {
+           int count = db.Products.Count();
+            return count;
+        }
+
+        //lay tong san pham nam
+        public int ProductCountM()
+        {
+            int count = db.Products.Where(m => m.type_id.Contains(Product.MALE)).Count();
+            return count;
+        }
+        //lay tong san pham nu
+        public int ProductCountF()
+        {
+            int count = db.Products.Where(m => m.type_id.Contains(Product.FEMALE)).Count();
+            return count;
+        }
+        //lay tong san pham tre em
+        public int ProductCountK()
+        {
+            int count = db.Products.Where(m => m.type_id.Contains(Product.KID)).Count();
+            return count;
+        }
     }
 }

@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using clothesWebSite.DAO;
-
+using PagedList;
+using PagedList.Mvc;
 namespace clothesWebSite.Controllers
 {
     public class ClothesController : Controller
@@ -43,11 +44,13 @@ namespace clothesWebSite.Controllers
             ViewBag.listPro = listPro;
             return View();
         }
-        public ActionResult ProductAllCategoty()
+        public ActionResult AllProduct(int? page)
         {
-            IEnumerable<Product> listPro = productDAO.getList();
-            ViewBag.listPro = listPro;
-            return View();
+            int pageSize = 9;
+            int pageNum = (page ?? 1);
+            int count = productDAO.ProductCount();
+            IEnumerable<Product> listPro = productDAO.getHotProduct(count);
+            return View(listPro.ToPagedList(pageNum, pageSize));
         }
         public ActionResult Category()
         {
@@ -57,8 +60,21 @@ namespace clothesWebSite.Controllers
             ViewBag.listTypeM = listTypeM;
             ViewBag.listTypeF = listTypeF;
             ViewBag.listTypeK = listTypeK;
+            ViewBag.countM = productDAO.ProductCountM();
+            ViewBag.countF = productDAO.ProductCountF();
+            ViewBag.countK = productDAO.ProductCountK();
             return PartialView();
         }
-
+        public ActionResult AllPost()
+        {
+            IEnumerable<Post> listPost = postDAO.getNewPost(2);
+            ViewBag.listPost = listPost;
+            return View();
+        }
+        public ActionResult PostDeitail(int id)
+        {
+            Post post = postDAO.getOne(id);
+            return View(post);
+        }
     }
 }

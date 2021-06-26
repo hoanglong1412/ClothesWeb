@@ -12,6 +12,17 @@ namespace clothesWebSite
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+           
+            routes.MapRoute(
+               name: "PostDetail",
+               url: "post-detail",
+               defaults: new { controller = "Clothes", action = "PostDeitail" }
+           );
+            routes.MapRoute(
+               name: "AllPost",
+               url: "all-post",
+               defaults: new { controller = "Clothes", action = "AllPost" }
+           );
             routes.MapRoute(
                name: "ProductCategory",
                url: "product-category",
@@ -20,7 +31,7 @@ namespace clothesWebSite
             routes.MapRoute(
                name: "ProductAll",
                url: "all-product",
-               defaults: new { controller = "Clothes", action = "ProductAllCategoty" }
+               defaults: new { controller = "Clothes", action = "AllProduct" }
            );
             routes.MapRoute(
               name: "ProductDetail",

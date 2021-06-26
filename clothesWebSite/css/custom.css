@@ -1,12 +1,80 @@
 /* your styles go here */
-.my-slider{
+.my-pagination {
+    display:flex;
+    justify-content:center;
+}
 
+  .my-pagination .pagination-container .pagination li:first-child a {
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+
+.my-pagination .pagination-container .pagination li:last-child a {
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+   }
+
+    .my-pagination .pagination-container .pagination li.active a {
+        color: #fff;
+        background-color: #4fbfa8;
+        border-color: #4fbfa8;
+    }
+
+    .my-pagination .pagination-container .pagination li.disabled a {
+        color: #6c757d;
+        background-color: #fff;
+        border-color: #dee2e6;
+    }
+
+    .my-pagination .pagination-container .pagination li a {
+        padding: 0.5rem 0.75rem;
+        line-height: 1.25;
+        color: #4fbfa8;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .my-pagination .pagination-container .pagination li a:hover, .my-pagination .pagination-container .pagination li a:focus {
+        color: #1c669c;
+        text-decoration: none;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+
+.pagination-lg .page-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
 }
-.my-slider-item{
-   
-   
-   
+
+
+.pagination-lg .page-item:first-child .page-link {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
 }
-.my-slider .item img{
-   
+
+
+
+.pagination-lg .page-item:last-child .page-link {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+
+
+.pagination-sm .page-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.738rem;
+    line-height: 1.5;
+}
+
+
+
+.pagination-sm .page-item:first-child .page-link {
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+.pagination-sm .page-item:last-child .page-link {
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
 }

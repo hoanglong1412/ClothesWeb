@@ -22,5 +22,10 @@ namespace clothesWebSite.DAO
             IEnumerable<Post> listProduct = db.Posts.Where(m => m.state == 1).OrderByDescending(m => m.last_update).Take(num);
             return listProduct;
         }
+        public Post getOne(int id)
+        {
+            Post post = db.Posts.Where(m => m.post_id == id).FirstOrDefault();
+            return post;
+        }
     }
 }
