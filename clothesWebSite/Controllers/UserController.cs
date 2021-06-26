@@ -12,7 +12,7 @@ namespace clothesWebSite.Controllers
     {
         MyDBContext db = new MyDBContext();
         UserDAO userDAO = new UserDAO();
-
+        ContactDAO contactDAO = new ContactDAO();
         public ActionResult Logout()
         {
             Session["user"] = null;
@@ -92,5 +92,32 @@ namespace clothesWebSite.Controllers
             }
             return View("Login");
         }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ContactConfirm(FormCollection form)
+        {
+            String first_name = form["first_name"];
+            String last_name = form["last_name"];
+            String email = form["email"];
+            String phone = form["phone"];
+            String content = form["content"];
+            String name = first_name + "" + last_name;
+            contactDAO.addContact(name, email, phone, content);
+            ViewBag.success = "We already receive your contact, we will answer as fast as we can !!!";
+            return View("Contact");
+        }
+        public ActionResult TextPage()
+        {
+            return View();
+        }
+        public ActionResult Faq()
+        {
+            return View();
+        }
+        
     }
 }

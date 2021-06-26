@@ -12,7 +12,22 @@ namespace clothesWebSite
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-           
+ 
+            routes.MapRoute(
+             name: "Faq",
+             url: "faq",
+             defaults: new { controller = "User", action = "Faq" }
+         );
+            routes.MapRoute(
+              name: "TextPage",
+              url: "text-page",
+              defaults: new { controller = "User", action = "TextPage" }
+          );
+            routes.MapRoute(
+              name: "Contact",
+              url: "contact-us",
+              defaults: new { controller = "User", action = "Contact" }
+          );
             routes.MapRoute(
                name: "PostDetail",
                url: "post-detail",
