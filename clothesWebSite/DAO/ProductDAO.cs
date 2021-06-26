@@ -80,10 +80,13 @@ namespace clothesWebSite.DAO
         //Lay san pham khuyen mai
         public IEnumerable<Product> getSaleProducts()
         {
-            //Hàm any() là kiểm tra trong list có phần tử nào không. Vì bảng ProductDiscount có quan hệ
+            //Hàm any() là kiểm tra trong list có phần tử nào thỏa mãn điêu kiện không. Vì bảng ProductDiscount có quan hệ
             // 1-1 nên nó không hiện trong Models, chúng ta có thể chi cập nó thong qua cha của nó
             // là Discount hoặc Product
-            return db.Products.Where(p => p.Discounts.Any()).OrderByDescending(p => p.create_day);
+            return db.Products
+                .Where(p => p.Discounts.Any(d => d.state == Discount.APPLIED
+                        && d.to_date >= DateTime.Now && DateTime.Now >= d.from_date))
+                .OrderByDescending(p => p.create_day);
         }
 
         public double getSalePrice(Product product)

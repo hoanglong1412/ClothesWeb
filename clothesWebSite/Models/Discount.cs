@@ -9,6 +9,11 @@ namespace clothesWebSite.Models
     [Table("Discount")]
     public partial class Discount
     {
+        static public readonly int WAIT_APPLY = 0;
+        static public readonly int APPLIED = 1;
+
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Discount()
         {

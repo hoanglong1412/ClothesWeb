@@ -80,6 +80,10 @@ namespace clothesWebSite.Controllers
         public ActionResult ProductSale(int? page, int itemShow = 12)
         {
             IEnumerable<Product> saleProducts = productDAO.getSaleProducts();
+            if (itemShow > saleProducts.Count())
+            {
+                itemShow = saleProducts.Count();
+            }
             int pageNum = (page ?? 1);
             int pageSize = itemShow;
             ViewBag.itemShow = itemShow;
