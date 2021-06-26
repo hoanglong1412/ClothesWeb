@@ -118,6 +118,11 @@ namespace clothesWebSite.Controllers
         {
             return View();
         }
-        
+
+        //controller thong tin tai khoan
+        public ActionResult AccountDetail()
+        {
+            return View();
+        }
     }
 }
