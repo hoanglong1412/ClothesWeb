@@ -76,5 +76,21 @@ namespace clothesWebSite.DAO
             int count = db.Products.Where(m => m.type_id.Contains(Product.KID)).Count();
             return count;
         }
+
+        //Lay san pham khuyen mai
+        public IEnumerable<Product> getSaleProducts()
+        {
+            //Hàm any() là kiểm tra trong list có phần tử nào không. Vì bảng ProductDiscount có quan hệ
+            // 1-1 nên nó không hiện trong Models, chúng ta có thể chi cập nó thong qua cha của nó
+            // là Discount hoặc Product
+            return db.Products.Where(p => p.Discounts.Any()).OrderByDescending(p => p.create_day);
+        }
+
+        public double getSalePrice(Product product)
+        {
+            Discount discount = db.Discounts.Find(product.Discounts.First());
+            int salePrice = discount.discount_by_price ?? 0;
+            return salePrice;
+        }
     }
 }

@@ -48,6 +48,12 @@ namespace clothesWebSite
                url: "all-product",
                defaults: new { controller = "Clothes", action = "AllProduct" }
            );
+
+            routes.MapRoute(
+               name: "ProductSale",
+               url: "product-sale",
+               defaults: new { controller = "Clothes", action = "ProductSale" }
+           );
             routes.MapRoute(
               name: "ProductDetail",
               url: "product-detail",

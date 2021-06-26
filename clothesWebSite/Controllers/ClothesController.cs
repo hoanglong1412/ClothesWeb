@@ -76,5 +76,15 @@ namespace clothesWebSite.Controllers
             Post post = postDAO.getOne(id);
             return View(post);
         }
+
+        public ActionResult ProductSale(int? page, int itemShow = 12)
+        {
+            IEnumerable<Product> saleProducts = productDAO.getSaleProducts();
+            int pageNum = (page ?? 1);
+            int pageSize = itemShow;
+            ViewBag.itemShow = itemShow;
+            ViewBag.itemCount = saleProducts.Count();
+            return View(saleProducts.ToPagedList(pageNum, pageSize));
+        }
     }
 }
