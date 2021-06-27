@@ -71,7 +71,7 @@
                         <iframe style="width: 100%;border:unset;filter:grayscale(2);" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1251208102735!2d106.71230301432061!3d10.801727892304388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVFAuSENN!5e0!3m2!1svi!2s!4v1624696570793!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         <hr>
                         <h2>Contact form</h2>
-                        <form action="@Url.Action("ContactConfirm","User")" method="post">
+                        <form action="@Url.Action("ContactConfirm","User")" method="post" onsubmit="submitSucess();">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -118,3 +118,8 @@
         </div>
     </div>
 </div>
+<script>
+    var submitSucess = function () {
+        alert("We have received your message. Thanks for your support!");
+    }
+</script>
