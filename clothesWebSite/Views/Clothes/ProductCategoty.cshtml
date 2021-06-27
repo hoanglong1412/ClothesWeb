@@ -58,7 +58,14 @@
                                     <div class="text">
                                         <h3><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})">@item.product_name</a></h3>
                                         <p class="price">
-                                            <del></del>$143.00
+                                            @if (ProductDAO.isSaleProduct(item))
+                                            {
+                                                <del>$@item.sale_price</del><text>$</text>@(item.sale_price - ProductDAO.getSalePrice(item))
+                                            } else
+                                            {
+                                                @("$" + item.sale_price)
+                                            }
+
                                         </p>
                                         <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
@@ -85,19 +92,19 @@
 
 
                         @*<div class="pages col-12">
-                            <p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>
-                            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                                <ul class="pagination">
-                                    <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                    <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                </ul>
-                            </nav>
-                        </div>*@
+                                <p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>
+                                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                                        <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                        <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                        <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                        <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                        <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                        <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>*@
                     </div>
                 </div>
                 <!-- /.col-lg-9-->

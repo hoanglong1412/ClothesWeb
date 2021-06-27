@@ -1,4 +1,5 @@
 ﻿@using clothesWebSite.Models
+@using clothesWebSite.DAO;
 @using PagedList.Mvc;
 @model PagedList.PagedList<Product>
 @{
@@ -57,22 +58,38 @@
                                     <div class="text">
                                         <h3><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})">@item.product_name</a></h3>
                                         <p class="price">
-                                            <del></del>$143.00
+                                            @if (ProductDAO.isSaleProduct(item))
+                                            {
+                                                <del>$@item.sale_price</del><text>$</text>@(item.sale_price - ProductDAO.getSalePrice(item))
+                                            }
+                                            else
+                                            {
+                                                @("$" + item.sale_price)
+                                            }
                                         </p>
-                                        <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
                                     <!-- /.text-->
-                                    <div class="ribbon new">
-                                        <div class="theribbon">NEW</div>
-                                        <div class="ribbon-background"></div>
-                                    </div>
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product            -->
+                                    @if (ProductDAO.isHotProduct(item))
+                                    {
+                                        <div class="ribbon new">
+                                            <div class="theribbon">NEW</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+                                    @if (ProductDAO.isSaleProduct(item))
+                                    {
+                                        <div class="ribbon sale">
+                                            <div class="theribbon">SALE</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+                                <!-- /.ribbon-->
                             </div>
-                        }
+                            <!-- /.product            -->
+                        </div>
+                    }
 
-                       @* Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;*@
+                        @* Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;*@
                         <div class="pages col-12">
                             @*<p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>*@
                             <div class="my-pagination">
@@ -91,7 +108,7 @@
                         <div class="card-header">
                             <h3 class="h4 card-title">Categories</h3>
                         </div>
-                        @Html.Action("Category", new { GetType = 0})
+                        @Html.Action("Category", new { GetType = 0 })
 
                     </div>
                     <div class="card sidebar-menu mb-4">
@@ -169,7 +186,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 
 
