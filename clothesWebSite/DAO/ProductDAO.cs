@@ -54,7 +54,7 @@ namespace clothesWebSite.DAO
         //lay tong hang
         public int ProductCount()
         {
-           int count = db.Products.Count();
+            int count = db.Products.Count();
             return count;
         }
 
@@ -89,11 +89,57 @@ namespace clothesWebSite.DAO
                 .OrderByDescending(p => p.create_day);
         }
 
-        public double getSalePrice(Product product)
+        //Lay san pham khuyen mai theo loai
+        public IEnumerable<Product> getSaleProductsWithCategory(String categoryId)
         {
-            Discount discount = db.Discounts.Find(product.Discounts.First());
-            int salePrice = discount.discount_by_price ?? 0;
-            return salePrice;
+            return db.Products
+                .Where(p => p.Discounts.Any(d => d.state == Discount.APPLIED
+                        && d.to_date >= DateTime.Now && DateTime.Now >= d.from_date))
+                .Where(p => p.type_id == categoryId)
+                .OrderByDescending(p => p.create_day);
+        }
+
+        //Kiem tra san pham co khuyen mai
+        static public bool isSaleProduct(Product p)
+        {
+            return p.Discounts.Any(d => d.state == Discount.APPLIED
+                        && d.to_date >= DateTime.Now && DateTime.Now >= d.from_date);
+        }
+        //Lay gia san pham khuyen mai
+        static public double getSalePrice(Product product)
+        {
+            Discount discount = product.Discounts
+                .FirstOrDefault(d => d.state == Discount.APPLIED
+                        && d.to_date >= DateTime.Now && DateTime.Now >= d.from_date);
+
+            if (discount.discount_by_ratio != null)
+            {
+                return product.sale_price * discount.discount_by_ratio ?? 0;
+            }
+            else if (discount.discount_by_price != null)
+            {
+                return discount.discount_by_price ?? 0;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+        //Kiem tra san pham co phai la san pham moi
+        static public bool isHotProduct(Product p)
+        {
+            TimeSpan t = p.create_day - DateTime.Now ?? TimeSpan.Zero;
+            return t.Days <= 30;
+        }
+
+        public int[] getProductCountByCategoryGender(IEnumerable<Product> products)
+        {
+            int[] rs = new int[3];
+            rs[0] = products.Where(p => p.type_id.Contains(Product.MALE)).Count();
+            rs[1] = products.Where(p => p.type_id.Contains(Product.FEMALE)).Count();
+            rs[2] = products.Where(p => p.type_id.Contains(Product.KID)).Count();
+            return rs;
         }
     }
 }

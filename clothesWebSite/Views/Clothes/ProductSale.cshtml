@@ -1,4 +1,5 @@
 ﻿@using clothesWebSite.Models
+@using clothesWebSite.DAO;
 @using PagedList.Mvc;
 @model PagedList.PagedList<Product>
 
@@ -27,7 +28,7 @@
                     </di
                     <div class="box info-bar">
                         <div class="row">
-                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>@ViewBag.itemShow</strong> of <strong>@ViewBag.itemCount</strong> products</div>
+                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>@Model.Count()</strong> of <strong>@ViewBag.itemCount</strong> products</div>
                             <div class="col-md-12 col-lg-7 products-number-sort">
                                 <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
                                     <div class="products-number"><strong>Show</strong>
@@ -63,15 +64,22 @@
                                     <div class="text">
                                         <h3><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})">@item.product_name</a></h3>
                                         <p class="price">
-                                            <del>$@item.sale_price</del>$@(item.sale_price - item.Discounts.First().discount_by_price)
+                                            <del>$@item.sale_price</del>$@(item.sale_price - ProductDAO.getSalePrice(item))
                                         </p>
                                         <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
                                     <!-- /.text-->
-                                    <div class="ribbon new">
+                                    <div class="ribbon sale">
                                         <div class="theribbon">SALE</div>
                                         <div class="ribbon-background"></div>
                                     </div>
+                                    @if (ProductDAO.isHotProduct(item))
+                                    {
+                                        <div class="ribbon new">
+                                            <div class="theribbon">NEW</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
                                     <!-- /.ribbon-->
                                 </div>
                                 <!-- /.product            -->
@@ -82,7 +90,7 @@
                         <div class="pages col-12">
                             @*<p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>*@
                             <div class="my-pagination">
-                                @Html.PagedListPager(Model, Page => Url.Action("ProductSale", new { Page = Page }))
+                                @Html.PagedListPager(Model, Page => Url.Action("ProductSale", new { Page = Page, ItemShow = ViewBag.itemShow }))
                             </div>
                         </div>
                     </div>
@@ -97,7 +105,7 @@
                         <div class="card-header">
                             <h3 class="h4 card-title">Categories</h3>
                         </div>
-                        @Html.Action("Category", "Clothes")
+                        @Html.Action("Category", new { GetType = 1})
 
                     </div>
                     <div class="card sidebar-menu mb-4">

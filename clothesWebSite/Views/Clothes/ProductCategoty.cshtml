@@ -1,7 +1,11 @@
-﻿
+﻿@using clothesWebSite.DAO;
+@using clothesWebSite.Models;
 @{
     ViewBag.Title = "ProductCategoty";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@{
+    IEnumerable<Product> listProduct = ViewBag.listPro as IEnumerable<Product>;
 }
 <div id="all">
     <div id="content">
@@ -23,7 +27,7 @@
                     </div>
                     <div class="box info-bar">
                         <div class="row">
-                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>12</strong> of <strong>25</strong> products</div>
+                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>@listProduct.Count()</strong> of <strong>@listProduct.Count()</strong> products</div>
                             <div class="col-md-12 col-lg-7 products-number-sort">
                                 <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
                                     <div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>
@@ -59,10 +63,20 @@
                                         <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
                                     <!-- /.text-->
-                                    <div class="ribbon new">
-                                        <div class="theribbon">NEW</div>
-                                        <div class="ribbon-background"></div>
-                                    </div>
+                                    @if (ProductDAO.isHotProduct(item))
+                                    {
+                                        <div class="ribbon new">
+                                            <div class="theribbon">NEW</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+                                    @if (ProductDAO.isSaleProduct(item))
+                                    {
+                                        <div class="ribbon sale">
+                                            <div class="theribbon">SALE</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
                                     <!-- /.ribbon-->
                                 </div>
                                 <!-- /.product            -->

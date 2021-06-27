@@ -5,7 +5,7 @@
             <ul class="list-unstyled">
                 @foreach (var item in ViewBag.listTypeM)
                 {
-                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id})" class="nav-link">@item.type_name</a></li>
+                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id, GetType = ViewBag.getType})" class="nav-link">@item.type_name</a></li>
                 }
             </ul>
         </li>
@@ -14,7 +14,7 @@
             <ul class="list-unstyled">
                 @foreach (var item in ViewBag.listTypeF)
                 {
-                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id})" class="nav-link">@item.type_name</a></li>
+                <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id, GetType = ViewBag.getType})" class="nav-link">@item.type_name</a></li>
                 }
             </ul>
         </li>
@@ -23,7 +23,7 @@
             <ul class="list-unstyled">
                 @foreach (var item in ViewBag.listTypeK)
                 {
-                    <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id})" class="nav-link">@item.type_name</a></li>
+                <li><a href="@Url.Action("ProductCategoty","Clothes", new{ id = item.type_id, GetType = ViewBag.getType})" class="nav-link">@item.type_name</a></li>
                 }
             </ul>
         </li>
