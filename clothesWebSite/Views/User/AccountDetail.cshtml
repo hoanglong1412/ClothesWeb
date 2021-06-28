@@ -160,7 +160,7 @@
     var check_exists_password = function () {
         var password_type = String(document.getElementById('password_old').value);
         var true_password = String(@user.password);
-        if (password_type != true_password && password_type != null) {
+        if (password_type != true_password) {
             document.getElementById('wrong_password').style.color = 'red';
             document.getElementById('wrong_password').innerHTML = 'Invalid password';
             document.getElementById('submit1').disabled = true;
