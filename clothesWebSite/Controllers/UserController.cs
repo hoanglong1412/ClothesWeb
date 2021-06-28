@@ -139,7 +139,8 @@ namespace clothesWebSite.Controllers
             string password = collection.Get("password_1");
             User user = Session[UserDAO.KEY_USER] as User;
             userDAO.updateUser(user.user_id, password);
-            return RedirectToAction("AccountDetail");
+            Session[UserDAO.KEY_USER] = null;
+            return RedirectToAction("Login");
         }
     }
 }

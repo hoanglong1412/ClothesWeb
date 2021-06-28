@@ -51,7 +51,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password_old">Old password</label>
-                                        <input id="password_old" type="password" class="form-control" required>
+                                        <input id="password_old" type="password" class="form-control" required onclick="openSubmit();">
                                         <span id='wrong_password'></span>
                                     </div>
                                 </div>
@@ -61,14 +61,14 @@
                                     <div class="form-group">
                                         <label for="password_1">New password</label>
                                         <input name ="password_1" id="password_1" type="password" class="form-control" 
-                                               required onkeyup="check_password();">
+                                                onkeyup="check_password();" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password_2">Retype new password</label>
                                         <input id="password_2" type="password" class="form-control" 
-                                               required onkeyup="check_password();">
+                                                onkeyup="check_password();" required>
                                         <span id='not_match'></span>
                                     </div>
                                 </div>
@@ -125,12 +125,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="datebirth">Date Birth</label>
-                                    <input id="datebirth" type="date" class="form-control" value="@user.date_birth">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="datebirth">Date Birth</label>
+                                        <input id="datebirth" type="date" class="form-control" value="@user.date_birth">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input id="address" type="text" class="form-control" value="">
+                                    </div>
                                 </div>
                             </div>
+                            
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
                             </div>
@@ -145,8 +154,6 @@
 <script>
 
     var check_password = function () {
-
-
         if (document.getElementById('password_1').value != document.getElementById('password_2').value) {
             document.getElementById('not_match').style.color = 'red';
             document.getElementById('not_match').innerHTML = 'Password is not matching';
@@ -168,6 +175,10 @@
             document.getElementById('wrong_password').innerHTML = '';
             document.getElementById('submit1').disabled = false;
         }
-   }
+    }
+
+    var openSubmit = function () {
+        document.getElementById('submit1').disabled = false;
+    }
 </script>
 
