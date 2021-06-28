@@ -10,7 +10,6 @@ namespace clothesWebSite.Controllers
 {
     public class UserController : Controller
     {
-        MyDBContext db = new MyDBContext();
         UserDAO userDAO = new UserDAO();
         ContactDAO contactDAO = new ContactDAO();
         public ActionResult Logout()
@@ -119,10 +118,28 @@ namespace clothesWebSite.Controllers
             return View();
         }
 
+        [Route("my-account")]
         //controller thong tin tai khoan
         public ActionResult AccountDetail()
         {
-            return View();
+            User user = (User)Session[UserDAO.KEY_USER];
+            if (user != null)
+            {
+                return View();
+            } else
+            {
+                return RedirectToAction("Login");
+            }
+            
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(FormCollection collection)
+        {
+            string password = collection.Get("password_1");
+            User user = Session[UserDAO.KEY_USER] as User;
+            userDAO.updateUser(user.user_id, password);
+            return RedirectToAction("AccountDetail");
         }
     }
 }
