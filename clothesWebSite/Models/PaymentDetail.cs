@@ -23,6 +23,8 @@ namespace clothesWebSite.Models
 
         public int? quantity { get; set; }
 
+        public float? price { get; set; }
+
         public virtual Payment Payment { get; set; }
 
         public virtual Product Product { get; set; }
