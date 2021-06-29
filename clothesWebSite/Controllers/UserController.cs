@@ -10,8 +10,8 @@ namespace clothesWebSite.Controllers
 {
     public class UserController : Controller
     {
-        UserDAO userDAO = new UserDAO();
-        ContactDAO contactDAO = new ContactDAO();
+        readonly UserDAO userDAO = new UserDAO();
+        readonly ContactDAO contactDAO = new ContactDAO();
         public ActionResult Logout()
         {
             Session["user"] = null;
@@ -125,6 +125,10 @@ namespace clothesWebSite.Controllers
             User user = (User)Session[UserDAO.KEY_USER];
             if (user != null)
             {
+                if (TempData["ErrorPhone"] != null)
+                {
+                    ViewBag.ErrorPhone = TempData["ErrorPhone"];
+                }
                 return View();
             } else
             {
@@ -141,6 +145,44 @@ namespace clothesWebSite.Controllers
             userDAO.updateUser(user.user_id, password);
             Session[UserDAO.KEY_USER] = null;
             return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public ActionResult UpdateBasicInfo(FormCollection collection)
+        {
+            //Get Data from view
+            User user = Session[UserDAO.KEY_USER] as User;
+            string phone = collection.Get("phone");
+            string fullname = collection.Get("fullname");
+            string address = collection.Get("address");
+            string email = collection.Get("email");
+            DateTime? dateBirth;
+            int gender = 0;
+            try
+            {
+                 dateBirth = DateTime.Parse(collection.Get("datebirth"));
+                 gender = Int16.Parse(collection.Get("gender"));
+            } catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+                dateBirth = null;
+            }
+            
+
+            //Check if phone exists
+            if (userDAO.checkPhone(phone) == false && phone != user.phone)
+            {
+                TempData["ErrorPhone"] = "Phone " + phone + " already exists, please try another phone";
+            } else
+            {
+                //Update to database and session
+                Session[UserDAO.KEY_USER] = userDAO
+                    .updateUser(user.user_id, phone, fullname, dateBirth, gender, address, email);
+                TempData["ErrorPhone"] = null;
+            }
+
+           
+            return RedirectToAction("AccountDetail");
         }
     }
 }

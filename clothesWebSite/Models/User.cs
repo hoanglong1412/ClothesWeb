@@ -42,6 +42,8 @@ namespace clothesWebSite.Models
 
         public DateTime? create_date { get; set; }
 
+        public string address { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
     }

@@ -37,9 +37,9 @@ namespace clothesWebSite.DAO
             User user = db.Users.FirstOrDefault(u => u.user_id == id);
             return user;
         }
-        public Boolean checkPhone(String phone)
+        public bool checkPhone(String phone)
         {
-            User user = db.Users.Where(m => m.phone == phone).FirstOrDefault();
+            User user = db.Users.FirstOrDefault(m => m.phone == phone);
             if (user == null)
             {
                 return true;
@@ -59,21 +59,26 @@ namespace clothesWebSite.DAO
             db.SaveChanges();
         }
 
-        public void updateUser(int id, string phone, string name, DateTime datebirth, int gender)
+        public User updateUser(int id, string phone, string name, DateTime? datebirth,
+                                int gender, string address, string email)
         {
             User user = getRow(id);
             user.phone = phone;
             user.full_name = name;
             user.date_birth = datebirth;
             user.gender = gender;
+            user.address = address;
+            user.email = email;
             db.SaveChanges();
+            return user;
         }
 
-        public void updateUser(int id, string password)
+        public User updateUser(int id, string password)
         {
             User user = getRow(id);
             user.password = password;
             db.SaveChanges();
+            return user;
         }
     }
 }
