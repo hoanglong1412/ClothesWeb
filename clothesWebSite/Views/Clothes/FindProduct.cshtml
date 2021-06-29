@@ -2,11 +2,11 @@
 @using clothesWebSite.DAO;
 @using PagedList.Mvc;
 @model PagedList.PagedList<Product>
-
 @{
-    ViewBag.Title = "ProductSale";
+    ViewBag.Title = "FindProduct";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
+
 
 <div id="all">
     <div id="content">
@@ -28,21 +28,22 @@
                     </div>
                     <div class="box info-bar">
                         <div class="row">
-                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>@Model.Count()</strong> of <strong>@ViewBag.itemCount</strong> products</div>
+                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>12</strong> of <strong>25</strong> products</div>
                             <div class="col-md-12 col-lg-7 products-number-sort">
                                 <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
-                                    <div class="products-number"><strong>Show</strong>
-                                        <a href="@Url.Action("ProductSale", new {ItemShow = 12 })" class="btn btn-outline-secondary btn-sm">12</a>
-                                        <a href="@Url.Action("ProductSale", new {ItemShow = 24 })" class="btn btn-outline-secondary btn-sm">24</a>
-                                        <a href="@Url.Action("ProductSale", new {ItemShow = ViewBag.itemCount })" class="btn btn-outline-secondary btn-sm">All</a>
-                                    <span>products</span>
+                                    <div class="products-number">
+                                        <strong>Show</strong>
+                                        <a href="@Url.Action("FindProduct", new {pageSize = 12 })" class="btn btn-outline-secondary btn-sm">12</a>
+                                        <a href="@Url.Action("FindProduct", new {pageSize = 24 })" class="btn btn-outline-secondary btn-sm">24</a>
+                                        <a href="@Url.Action("FindProduct", new {pageSize = ViewBag.countAll })" class="btn btn-outline-secondary btn-sm">All</a>
+                                        <span>products</span>
                                     </div>
                                     <div class="products-sort-by mt-2 mt-lg-0">
                                         <strong>Sort by</strong>
                                         <select name="sort-by" class="form-control">
                                             <option>Price</option>
                                             <option>Name</option>
-                                            <option>Hot</option>
+                                            <option>Sales first</option>
                                         </select>
                                     </div>
                                 </form>
@@ -64,19 +65,28 @@
                                     <div class="text">
                                         <h3><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})">@item.product_name</a></h3>
                                         <p class="price">
-                                            <del>$@item.sale_price</del>$@(item.sale_price - ProductDAO.getSalePrice(item))
+                                            @if (ProductDAO.isSaleProduct(item))
+                                            {
+                                                <del>$@item.sale_price</del><text>$</text>@(item.sale_price - ProductDAO.getSalePrice(item))
+                                            }
+                                            else
+                                            {
+                                                @("$" + item.sale_price)
+                                            }
                                         </p>
-                                        <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
                                     <!-- /.text-->
-                                    <div class="ribbon sale">
-                                        <div class="theribbon">SALE</div>
-                                        <div class="ribbon-background"></div>
-                                    </div>
                                     @if (ProductDAO.isHotProduct(item))
                                     {
                                         <div class="ribbon new">
                                             <div class="theribbon">NEW</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+                                    @if (ProductDAO.isSaleProduct(item))
+                                    {
+                                        <div class="ribbon sale">
+                                            <div class="theribbon">SALE</div>
                                             <div class="ribbon-background"></div>
                                         </div>
                                     }
@@ -90,7 +100,7 @@
                         <div class="pages col-12">
                             @*<p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>*@
                             <div class="my-pagination">
-                                @Html.PagedListPager(Model, Page => Url.Action("ProductSale", new { Page = Page, ItemShow = ViewBag.itemShow }))
+                                @Html.PagedListPager(Model, Page => Url.Action("FindProduct", new {id = ViewBag.id , Page = Page }))
                             </div>
                         </div>
                     </div>
@@ -105,7 +115,7 @@
                         <div class="card-header">
                             <h3 class="h4 card-title">Categories</h3>
                         </div>
-                        @Html.Action("Category", new { GetType = 1})
+                        @Html.Action("Category", new { GetType = 0 })
 
                     </div>
                     <div class="card sidebar-menu mb-4">
@@ -184,6 +194,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 

@@ -136,5 +136,25 @@ namespace clothesWebSite.Controllers
             
             return PartialView();
         }
+
+        public ActionResult FindProduct(string id, int? page, int pageSize = 9)
+        {
+
+            int count = productDAO.findProductCount(id);
+            int pageNum = (page ?? 1);
+            ViewBag.countAll = count;
+            ViewBag.id = id;
+            IEnumerable<Product> listPro = productDAO.findProduct(id, count);
+            return View(listPro.ToPagedList(pageNum, pageSize));
+        }
+        //public ActionResult FindProduct(FormCollection form, int? page, int pageSize = 9)
+        //{
+        //    string key = form["key"];
+        //    int pageNum = (page ?? 1);
+        //    int count = productDAO.findProductCount(key);
+        //    ViewBag.countAll = count;
+        //    IEnumerable<Product> listPro = productDAO.findProduct(key, count);
+        //    return View(listPro.ToPagedList(pageNum, pageSize));
+        //}
     }
 }
