@@ -9,6 +9,11 @@
 @using clothesWebSite.DAO;
 @{
     User user = (User)Session[UserDAO.KEY_USER];
+    String date_birth = null;
+    if (user.date_birth.HasValue)
+    {
+        date_birth = user.date_birth.Value.Date.ToString("yyyy-MM-dd");
+    }
 }
 
 <div id="all">
@@ -133,7 +138,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="datebirth">Date Birth</label>
-                                        <input id="datebirth" name="datebirth" type="date" class="form-control" value="@user.date_birth.Value.Date.ToString("yyyy-MM-dd")">
+                                        <input id="datebirth" name="datebirth" type="date" class="form-control" value="@date_birth">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
