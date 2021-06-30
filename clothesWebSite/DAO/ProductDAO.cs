@@ -141,5 +141,16 @@ namespace clothesWebSite.DAO
             rs[2] = products.Where(p => p.type_id.Contains(Product.KID)).Count();
             return rs;
         }
+
+        public IEnumerable<Product> findProduct(string key,int num)
+        {
+            IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1 && m.product_name.Contains(key)).OrderByDescending(m => m.create_day).Take(num);
+            return listProduct;
+        }
+        public int findProductCount(string key)
+        {
+            int i = db.Products.Where(m => m.state == 1 && m.product_name.Contains(key)).Count();
+            return i;
+        }
     }
 }
