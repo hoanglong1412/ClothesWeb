@@ -29,6 +29,10 @@ namespace clothesWebSite.Models
 
         public int state { get; set; }
 
+        public string payway { get; set; }
+
+        public string deliver_type { get; set; }
+
         public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
