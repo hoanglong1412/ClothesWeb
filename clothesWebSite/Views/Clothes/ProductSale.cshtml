@@ -16,7 +16,7 @@
                     <!-- breadcrumb-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index")">Home</a></li>
                             <li aria-current="page" class="breadcrumb-item active">Product</li>
                         </ol>
                     </nav>
@@ -66,7 +66,8 @@
                                         <p class="price">
                                             <del>$@item.sale_price</del>$@(item.sale_price - ProductDAO.getSalePrice(item))
                                         </p>
-                                        <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                                        <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a>
+                                        <a href="@Url.Action("addToCart","Cart", new { @id=item.product_id, @strURL=Request.Url.ToString() })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
                                     <!-- /.text-->
                                     <div class="ribbon sale">

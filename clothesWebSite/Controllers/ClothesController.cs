@@ -32,8 +32,8 @@ namespace clothesWebSite.Controllers
         {
             Product product = productDAO.getOne(id);
             string idCategory = product.type_id;
-            IEnumerable<Product> listProCate = productDAO.getSameCategory(idCategory,3,id);
-            IEnumerable<Product> listHotPro = productDAO.getHotProduct(3,id);
+            IEnumerable<Product> listProCate = productDAO.getSameCategory(idCategory, 3, id);
+            IEnumerable<Product> listHotPro = productDAO.getHotProduct(3, id);
             ViewBag.productCate = listProCate;
             ViewBag.productHot = listHotPro;
             return View(product);
@@ -56,25 +56,11 @@ namespace clothesWebSite.Controllers
         {
             int pageNum = (page ?? 1);
             int count = productDAO.ProductCount();
+            ViewBag.itemshow = pageSize;
             IEnumerable<Product> listPro = productDAO.getHotProduct(count);
             ViewBag.countAll = productDAO.ProductCount();
             return View(listPro.ToPagedList(pageNum, pageSize));
         }
-
-        //public ActionResult Category()
-        //{
-        //    IEnumerable<ProductType> listTypeM = productTypeDAO.getListM();
-        //    IEnumerable<ProductType> listTypeF = productTypeDAO.getListF();
-        //    IEnumerable<ProductType> listTypeK = productTypeDAO.getListK();
-        //    ViewBag.listTypeM = listTypeM;
-        //    ViewBag.listTypeF = listTypeF;
-        //    ViewBag.listTypeK = listTypeK;
-        //    ViewBag.countM = productDAO.ProductCountM();
-        //    ViewBag.countF = productDAO.ProductCountF();
-        //    ViewBag.countK = productDAO.ProductCountK();
-        //    return PartialView();
-        //}
-
         public ActionResult AllPost()
         {
             IEnumerable<Post> listPost = postDAO.getNewPost(2);
@@ -137,24 +123,20 @@ namespace clothesWebSite.Controllers
             return PartialView();
         }
 
-        public ActionResult FindProduct(string id, int? page, int pageSize = 9)
+        public ActionResult FindProduct(string id,int? page, int pageSize = 9)
         {
 
             int count = productDAO.findProductCount(id);
             int pageNum = (page ?? 1);
             ViewBag.countAll = count;
             ViewBag.id = id;
+            ViewBag.itemshow = pageSize;
             IEnumerable<Product> listPro = productDAO.findProduct(id, count);
             return View(listPro.ToPagedList(pageNum, pageSize));
         }
-        //public ActionResult FindProduct(FormCollection form, int? page, int pageSize = 9)
-        //{
-        //    string key = form["key"];
-        //    int pageNum = (page ?? 1);
-        //    int count = productDAO.findProductCount(key);
-        //    ViewBag.countAll = count;
-        //    IEnumerable<Product> listPro = productDAO.findProduct(key, count);
-        //    return View(listPro.ToPagedList(pageNum, pageSize));
-        //}
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

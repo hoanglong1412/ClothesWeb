@@ -15,7 +15,7 @@
                     <!-- breadcrumb-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index")">Home</a></li>
                             <li aria-current="page" class="breadcrumb-item active">Product</li>
                         </ol>
                     </nav>
@@ -100,7 +100,7 @@
                         <div class="pages col-12">
                             @*<p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>*@
                             <div class="my-pagination">
-                                @Html.PagedListPager(Model, Page => Url.Action("AllProduct", new { Page = Page }))
+                                @Html.PagedListPager(Model, Page => Url.Action("AllProduct", new { Page = Page, pageSize = ViewBag.itemshow }))
                             </div>
                         </div>
                     </div>

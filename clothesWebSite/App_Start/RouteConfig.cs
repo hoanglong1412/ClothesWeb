@@ -16,6 +16,16 @@ namespace clothesWebSite
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
+             name: "Cart",
+             url: "your-cart",
+             defaults: new { controller = "Cart", action = "viewCart" }
+         );
+            routes.MapRoute(
+             name: "Search",
+             url: "search-by-key",
+             defaults: new { controller = "Clothes", action = "FindProduct" }
+         );
+            routes.MapRoute(
              name: "Faq",
              url: "faq",
              defaults: new { controller = "User", action = "Faq" }
