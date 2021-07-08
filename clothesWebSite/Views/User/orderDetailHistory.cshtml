@@ -4,6 +4,7 @@
     ViewBag.Title = "orderDetailHistory";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
     User user = (User)Session["user"];
+    Payment payment = ViewBag.payMent as Payment;
 }
 <div id="all">
     <div id="content">
@@ -24,7 +25,7 @@
                     *** CUSTOMER MENU ***
                     _________________________________________________________
                     -->
-                    @Html.Action("customerSectionPartialView","User")
+                    @Html.Action("customerSectionPartialView", "User")
 
                     <!-- /.col-lg-3-->
                     <!-- *** CUSTOMER MENU END ***-->
@@ -32,32 +33,34 @@
                 <div id="customer-order" class="col-lg-9">
                     <div class="box">
                         <h1>Order #@ViewBag.payMent.payment_id</h1>
-                        <p class="lead">Order #@ViewBag.payMent.payment_id was placed on <strong>@ViewBag.payMent.create_date</strong> and is currently  <strong>
-                            @if(ViewBag.payMent.state == 0)
-                            {
-                              <span>Cancelled</span>  
-                            }
-                            else if(ViewBag.payMent.state == 1)
-                            {
-                                 <span> On hold</span>  
-                            }
-                            else if(ViewBag.payMent.state == 2)
-                            {
-                                <span> Being prepared</span>
-                            }
-                            else if(ViewBag.payMent.state == 3)
-                            {
-                                <span> On way</span>
-                            }
-                            else if(ViewBag.payMent.state == 4)
-                            {
-                                <span> Received</span>
-                            }
-                            else
-                            {
-                             <span> @ViewBag.payMent.state</span>
-                            }
-                        </strong>.</p>
+                        <p class="lead">
+                            Order #@ViewBag.payMent.payment_id was placed on <strong>@ViewBag.payMent.create_date</strong> and is currently  <strong>
+                                @if (ViewBag.payMent.state == 0)
+                                {
+                                    <span>Cancelled</span>
+                                }
+                                else if (ViewBag.payMent.state == 1)
+                                {
+                                    <span> On hold</span>
+                                }
+                                else if (ViewBag.payMent.state == 2)
+                                {
+                                    <span> Being prepared</span>
+                                }
+                                else if (ViewBag.payMent.state == 3)
+                                {
+                                    <span> On way</span>
+                                }
+                                else if (ViewBag.payMent.state == 4)
+                                {
+                                    <span> Received</span>
+                                }
+                                else
+                                {
+                                    <span> @ViewBag.payMent.state</span>
+                                }
+                            </strong>.
+                        </p>
                         <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
                         <hr>
                         <div class="table-responsive mb-4">
@@ -86,7 +89,7 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="5" class="text-right">Order subtotal</th>
-                                        @{ double totalPrice = PaymentDAO.getTotalPrice(ViewBag.payMent) + 10;}
+                                        @{ double totalPrice = PaymentDAO.getTotalPrice(ViewBag.payMent);}
                                         <th>$@PaymentDAO.getTotalPrice(ViewBag.payMent).00</th>
                                     </tr>
                                     <tr>
@@ -99,7 +102,17 @@
                                     </tr>
                                     <tr>
                                         <th colspan="5" class="text-right">Total</th>
-                                        <th>$@totalPrice.00</th>
+                                        @if (!payment.payway.Equals(PaymentDAO.PAYPAL))
+                                        {
+                                            <th>$@(totalPrice+10).00</th>
+                                        }
+                                        else
+                                        {
+                                            <th class="price">
+                                                <del>$@(totalPrice+10).00</del>
+                                                <text>was paid by @payment.payway</text>
+                                            </th>
+                                        }
                                     </tr>
                                 </tfoot>
                             </table>
@@ -113,7 +126,7 @@
                             <div class="col-lg-6">
                                 <h2>Shipping address</h2>
                                 <p> @ViewBag.payMent.address_deliver</p>
-                               
+
                             </div>
                         </div>
                     </div>

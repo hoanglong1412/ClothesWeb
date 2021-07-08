@@ -9,6 +9,8 @@ namespace clothesWebSite.DAO
     public class PaymentDAO
     {
 
+        static public string PAYPAL = "Paypal";
+
         private MyDBContext db;
         public PaymentDAO()
         {
