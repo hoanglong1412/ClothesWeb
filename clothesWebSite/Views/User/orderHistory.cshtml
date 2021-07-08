@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "orderHistory";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+    //Clear previouse payment in session
+    if (Session['payment'] != null)
+    {
+        Session['payment'] = null;
+    }
 }
 <div id="all">
     <div id="content">

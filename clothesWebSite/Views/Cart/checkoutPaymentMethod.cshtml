@@ -29,12 +29,12 @@
                                             <h4>Cash on delivery</h4>
                                             <p>You pay when you get it.</p>
                                             <div class="box-footer text-center">
-                                                <input type="radio" name="payment" value="Cash on delivery" required>
+                                                <input type="radio" name="payment" value="Cash on delivery" required checked>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="box payment-method">
+                                    <div class="col-md-6" onclick="showDemoPaypalAC();">
+                                        <div class="box payment-method" >
                                             <h4>Paypal</h4>
                                             <p>We like it all.</p>
                                             <div class="box-footer text-center">
@@ -77,3 +77,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    var showDemoPaypalAC = function () {
+        alert("Use this account to test paypal payment method\nemail: nhom13web@personal.example.com\npassword: abc@123456");
+    }
+</script>
