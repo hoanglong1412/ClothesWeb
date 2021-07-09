@@ -12,7 +12,7 @@
                     <!-- breadcrumb-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Clothes")">Home</a></li>
                             <li aria-current="page" class="breadcrumb-item active">New account / Sign in</li>
                         </ol>
                     </nav>
@@ -22,7 +22,7 @@
                         <h1>New account</h1>
                         <p class="lead">Not our registered customer yet?</p>
                         <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                        <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                        <p class="text-muted">If you have any questions, please feel free to <a href="~/contact-us">contact us</a>, our customer service center is working for you 24/7.</p>
                         <hr>
                         <p class="text-danger"> @ViewBag.Message2</p>
                         <form action="/User/RegisterConfirm" method="post">
