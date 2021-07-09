@@ -209,22 +209,25 @@ namespace clothesWebSite.Controllers
             payment.phone_receiver = phone;
             payment.state = 1;
             payment.user_id = user.user_id;
-            db.Payments.Add(payment);
-            db.SaveChanges();
+           
 
             //Add payment for update when paypal is success or failure
             Session["Payment"] = payment;
+            //Paypal payment. Need to pay first before update to database
+            if (paymentmethod.Equals(PaymentDAO.PAYPAL))
+            {
+                return RedirectToAction("PaymentWithPaypal");
+            }
+
+            //Else just update directly
+            db.Payments.Add(payment);
+            db.SaveChanges();
 
             foreach (var item in listCart)
             {
                 paymentDetailDAO.addPaymentDetail(payment.payment_id, item.cart_product_id, item.cart_quantity, item.cart_sale_price);
             }
 
-            //Paypal payment. Need to pay first before update to database
-            if (paymentmethod.Equals(PaymentDAO.PAYPAL))
-            {
-                return RedirectToAction("PaymentWithPaypal");
-            }
 
             Session["Cart"] = null;
             return RedirectToAction("orderHistory","User");
@@ -279,7 +282,6 @@ namespace clothesWebSite.Controllers
                     //If executed payment failed then we will show payment failure message to user  
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        db.Payments.Remove(dbPayment); // remove payment when failure
                         return View("FailurePaypal");
                     }
                 }
@@ -296,11 +298,19 @@ namespace clothesWebSite.Controllers
                 {
                     errorMessage = ex.ToString();
                 }
-                db.Payments.Remove(dbPayment); // remove payment when failure
                 System.Diagnostics.Debug.WriteLine("Paypal Error: " + errorMessage + ex.StackTrace + ex.Data.ToString());
                 return View("FailurePaypal");
             }
             //on successful payment, show success page to user.  
+            //Update to database
+            db.Payments.Add(dbPayment);
+            db.SaveChanges();
+            List<ShoppingCart> listCart = getCart();
+            foreach (var item in listCart)
+            {
+                paymentDetailDAO.addPaymentDetail(dbPayment.payment_id, item.cart_product_id, item.cart_quantity, item.cart_sale_price);
+            }
+
             Session["Cart"] = null;
             return RedirectToAction("orderHistory", "User");
         }
@@ -385,7 +395,7 @@ namespace clothesWebSite.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Pay your cart on Olayigu with paypal",
-                invoice_number = curPayment.payment_id.ToString(), //Convert.ToString((new Random()).Next(100000)), //Generate an Invoice No  
+                invoice_number = Convert.ToString((new Random()).Next(100000)), //Generate an Invoice No  
                 amount = amount,
                 item_list = itemList
             });
