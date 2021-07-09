@@ -330,6 +330,9 @@ namespace clothesWebSite.Controllers
         }
         private PayPal.Api.Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
+            //Get current payment
+            Payment curPayment = Session["Payment"] as Payment;
+
             //create itemlist and add item objects to it  
             var itemList = new ItemList()
             {
@@ -381,7 +384,7 @@ namespace clothesWebSite.Controllers
             // Adding description about the transaction  
             transactionList.Add(new Transaction()
             {
-                description = "Pay on Olayigu with paypal",
+                description = "Pay your cart on Olayigu with paypal",
                 invoice_number = Convert.ToString((new Random()).Next(100000)), //Generate an Invoice No  
                 amount = amount,
                 item_list = itemList
