@@ -385,7 +385,7 @@ namespace clothesWebSite.Controllers
             transactionList.Add(new Transaction()
             {
                 description = "Pay your cart on Olayigu with paypal",
-                invoice_number = Convert.ToString((new Random()).Next(100000)), //Generate an Invoice No  
+                invoice_number = curPayment.payment_id.ToString(), //Convert.ToString((new Random()).Next(100000)), //Generate an Invoice No  
                 amount = amount,
                 item_list = itemList
             });
