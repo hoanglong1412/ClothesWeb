@@ -199,8 +199,6 @@ namespace clothesWebSite.Controllers
             User user = (User)Session["user"];
             List<ShoppingCart> listCart = getCart();
 
-            
-
             Payment payment = new Payment();
             payment.name_receiver = name;
             payment.address_deliver = address;
