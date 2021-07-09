@@ -40,10 +40,18 @@
                                     </div>
                                     <div class="products-sort-by mt-2 mt-lg-0">
                                         <strong>Sort by</strong>
-                                        <select name="sort-by" class="form-control">
-                                            <option>Price</option>
-                                            <option>Name</option>
-                                            <option>Sales first</option>
+                                        <select name="sort-by" class="form-control" id="SelectOption">
+                                            <option value="null">
+                                                Default
+                                            </option>
+                                            <option value="Price">
+                                                <a href="/all-product?sort=price&pageSize=@ViewBag.itemshow">Price</a>
+                                            </option>
+                                            <option value="Date">
+                                                <a href="/all-product?sort=date&pageSize=@ViewBag.itemshow">Date</a>
+                                            </option>
+                                            <option value="Name">
+                                                <a href="/all-product?sort=name&pageSize=@ViewBag.itemshow">Name</a>
                                         </select>
                                     </div>
                                 </form>
@@ -90,17 +98,17 @@
                                             <div class="ribbon-background"></div>
                                         </div>
                                     }
-                                <!-- /.ribbon-->
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product            -->
                             </div>
-                            <!-- /.product            -->
-                        </div>
-                    }
+                        }
 
                         @* Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;*@
                         <div class="pages col-12">
                             @*<p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>*@
                             <div class="my-pagination">
-                                @Html.PagedListPager(Model, Page => Url.Action("AllProduct", new { Page = Page, pageSize = ViewBag.itemshow }))
+                                @Html.PagedListPager(Model, Page => Url.Action("AllProduct", new { Page = Page,sort = ViewBag.sort, pageSize = ViewBag.itemshow }))
                             </div>
                         </div>
                     </div>
@@ -193,8 +201,23 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 
 
+<script>
+    document.getElementById('SelectOption').addEventListener('change', function () {
+        val = $("#SelectOption").val();
 
+        console.log(val)
+        if (val === 'Date') {
+            window.open('/all-product?sort=date&pageSize=@ViewBag.itemshow', '_self');
+        }
+        if (val === 'Price') {
+            window.open('/all-product?sort=price&pageSize=@ViewBag.itemshow', '_self');
+        }
+        if (val === 'Name') {
+            window.open('/all-product?sort=name&pageSize=@ViewBag.itemshow', '_self');
+        }
+    });
+</script>
