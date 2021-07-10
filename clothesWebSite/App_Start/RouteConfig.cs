@@ -79,7 +79,7 @@ namespace clothesWebSite
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Clothes", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Clothes", action="Index", id = UrlParameter.Optional }
             );
         }
     }

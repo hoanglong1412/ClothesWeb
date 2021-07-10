@@ -28,6 +28,8 @@ namespace clothesWebSite.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<MyDBContext>(null);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Banner>()
                 .Property(e => e.url)
                 .IsUnicode(false);
