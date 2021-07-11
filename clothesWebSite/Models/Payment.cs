@@ -33,6 +33,14 @@ namespace clothesWebSite.Models
 
         public string deliver_type { get; set; }
 
+        public string address_deliver { get; set; }
+
+        [StringLength(15)]
+        public string phone_receiver { get; set; }
+
+        public string name_receiver { get; set; }
+
+
         public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

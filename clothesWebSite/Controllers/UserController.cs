@@ -12,6 +12,8 @@ namespace clothesWebSite.Controllers
     {
         readonly UserDAO userDAO = new UserDAO();
         readonly ContactDAO contactDAO = new ContactDAO();
+        readonly PaymentDAO paymentDAO = new PaymentDAO();
+        readonly PaymentDetailDAO paymentDetailDAO = new PaymentDetailDAO();
         public ActionResult Logout()
         {
             Session["user"] = null;
@@ -184,5 +186,26 @@ namespace clothesWebSite.Controllers
            
             return RedirectToAction("AccountDetail");
         }
+        public ActionResult customerSectionPartialView()
+        {
+            return PartialView();
+        }
+        public ActionResult orderHistory()
+        {
+            User user = (User)Session["user"];
+            if(Session["user"] == null)
+            {
+                RedirectToAction("Login");
+            }
+             IEnumerable<Payment> list = paymentDAO.getList(user.user_id);
+             return View(list);
+        }
+        public ActionResult orderDetailHistory(int id)
+        {
+            ViewBag.payMent = paymentDAO.getOne(id);
+            IEnumerable<PaymentDetail> list = paymentDetailDAO.getList(id);
+            return View(list);
+        }
+
     }
 }

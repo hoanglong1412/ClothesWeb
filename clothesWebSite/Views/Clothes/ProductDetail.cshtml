@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item"><a href="@Url.Action("Index")">Home</a></li>
                             @*<li class="breadcrumb-item"><a href="#">Ladies</a></li>
                             <li class="breadcrumb-item"><a href="#">Tops</a></li>*@
-                            <li aria-current="page" class="breadcrumb-item active">White Blouse Armani</li>
+                        <li aria-current="page" class="breadcrumb-item active">@Model.product_name</li>
                         </ol>
                     </nav>
                 </div>
@@ -134,7 +134,7 @@
                                 @if (ProductDAO.isSaleProduct(Model))
                                 {
                                     <p class="price">
-                                        <del>$@Model.sale_price</del><text>$</text>@(Model.sale_price - ProductDAO.getSalePrice(Model))
+                                        <del>$@Model.sale_price</del> <text> $</text>@(Model.sale_price - ProductDAO.getSalePrice(Model))
                                     </p>
 
                                 }
@@ -142,7 +142,7 @@
                                 {
                                     <p class="price">@("$" + Model.sale_price)</p>
                                 }
-                                <p class="text-center buttons"><a href="@Url.Action("addToCart","Cart", new { @id=Model.product_id, @strURL=Request.Url.ToString() })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                <p class="text-center buttons"><a onclick="myFunction()" href="@Url.Action("addToCart","Cart", new { @id=Model.product_id, @strURL=Request.Url.ToString() })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
                                 <a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Add to wishlist</a></p>
                             </div>
                             <div data-slider-id="1" class="owl-thumbs">
@@ -283,3 +283,8 @@
     </div>
 </div>
 
+<script>
+    function myFunction() {
+        alert("Now, you can check your item in Cart");
+    }
+</script>

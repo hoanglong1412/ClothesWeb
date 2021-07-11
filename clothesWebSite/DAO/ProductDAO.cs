@@ -39,11 +39,28 @@ namespace clothesWebSite.DAO
             IEnumerable<Product> listProduct = db.Products.Where(m => m.state == 1 && m.type_id == catelogyId && m.product_id != id).OrderByDescending(m => m.create_day).Take(num);
             return listProduct;
         }
-        //lay toan bo san pham
-        public IEnumerable<Product> getList()
+        //lay toan bo san pham sort
+        public IEnumerable<Product> getList(string sort,int num)
         {
-            IEnumerable<Product> listProduct = db.Products;
-            return listProduct;
+            IEnumerable<Product> listProduct;
+
+            if (sort == "date")
+            {
+                return listProduct = db.Products.Where(m => m.state == 1).OrderByDescending(m => m.create_day).Take(num);
+            }
+            else if(sort == "price")
+            {
+                return listProduct = db.Products.Where(m => m.state == 1).OrderByDescending(m => m.sale_price).Take(num);
+            }
+            else if(sort == "name")
+            {
+                return listProduct = db.Products.Where(m => m.state == 1).OrderBy(m => m.product_name).Take(num);
+            }
+            else
+            {
+                return listProduct = db.Products.Where(m => m.state == 1).OrderByDescending(m => m.create_day).Take(num);
+            }
+
         }
         //lay tat ca san pham cung loai
         public IEnumerable<Product> getSameCategory(string catelogyId)

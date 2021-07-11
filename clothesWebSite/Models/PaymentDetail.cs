@@ -23,7 +23,7 @@ namespace clothesWebSite.Models
 
         public int? quantity { get; set; }
 
-        public float? price { get; set; }
+        public double? price { get; set; }
 
         public virtual Payment Payment { get; set; }
 

@@ -52,12 +52,13 @@ namespace clothesWebSite.Controllers
             
             return View();
         }
-        public ActionResult AllProduct(int? page,int pageSize = 9)
+        public ActionResult AllProduct(string sort,int? page, int pageSize = 9)
         {
             int pageNum = (page ?? 1);
             int count = productDAO.ProductCount();
             ViewBag.itemshow = pageSize;
-            IEnumerable<Product> listPro = productDAO.getHotProduct(count);
+            ViewBag.sort = sort;
+            IEnumerable<Product> listPro = productDAO.getList(sort,count);
             ViewBag.countAll = productDAO.ProductCount();
             return View(listPro.ToPagedList(pageNum, pageSize));
         }

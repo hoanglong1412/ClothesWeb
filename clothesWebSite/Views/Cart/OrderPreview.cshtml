@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "OrderPreview";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">Checkout - Order review</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div id="checkout" class="col-lg-9">
+                    <div class="box">
+                        <form method="post" action="@Url.Action("Order","Cart")">
+                            <h1>Checkout - Order review</h1>
+                            <div class="nav flex-column flex-sm-row nav-pills"><a href="@Url.Action("checkoutAddress","Cart")" class="nav-link flex-sm-fill text-sm-center"> <i class="fa fa-map-marker">                  </i>Address</a><a href="#" class="nav-link flex-sm-fill text-sm-center"> <i class="fa fa-truck">                       </i>Delivery Method</a><a href="#" class="nav-link flex-sm-fill text-sm-center"> <i class="fa fa-money">                      </i>Payment Method</a><a href="#" class="nav-link flex-sm-fill text-sm-center active"> <i class="fa fa-eye">                     </i>Order Review</a></div>
+                            <div class="content">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2">Product</th>
+                                                <th>Quantity</th>
+                                                <th>Unit price</th>
+                                                <th colspan="2">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.cart)
+                                            {
+
+                                                <tr>
+                                                    <td><img src="~/img/product/@item.cart_image_name" alt="item.cart_product_name"></td>
+                                                    <td>@item.cart_product_name</td>
+                                                    <td>
+                                                        @item.cart_quantity
+                                                    </td>
+                                                    <td>$@item.cart_sale_price</td>
+                                                    <td>$@item.cart_total </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="5">Total</th>
+                                                <th colspan="2">$@ViewBag.AllTotal</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <input hidden type="text" value="@ViewBag.name" name="name" />
+                                <input hidden type="text" value="@ViewBag.phone" name="phone" />
+                                <input hidden type="text" value="@ViewBag.address" name="address" />
+                                <input hidden type="text" value="@ViewBag.delivery" name="delivery" />
+                                <input hidden type="text" value="@ViewBag.payment" name="payment" />
+                                <!-- /.table-responsive-->
+                            </div>
+                            <!-- /.content-->
+                            <div class="box-footer d-flex justify-content-between">
+                                <a href="checkout3.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Back to payment method</a>
+                                <button type="submit" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-->
+                </div>
+                <!-- /.col-lg-9-->
+                <div class="col-lg-3">
+                    @Html.Action("orderSummaryPartialView", "Cart")
+                </div>
+                <!-- /.col-lg-3-->
+            </div>
+        </div>
+    </div>
+</div>
