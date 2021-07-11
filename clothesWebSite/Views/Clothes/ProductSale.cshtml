@@ -67,7 +67,7 @@
                                             <del>$@item.sale_price</del>$@(item.sale_price - ProductDAO.getSalePrice(item))
                                         </p>
                                         <p class="buttons"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="btn btn-outline-secondary">View detail</a>
-                                        <a href="@Url.Action("addToCart","Cart", new { @id=item.product_id, @strURL=Request.Url.ToString() })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                                        <a href="@Url.Action("addToCart","Cart", new { @id=item.product_id, @strURL=Request.Url.ToString() })" onclick="myFunction()" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                     </div>
                                     <!-- /.text-->
                                     <div class="ribbon sale">
@@ -185,7 +185,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    function myFunction() {
+        alert("Now, you can check your item in Cart");
+    }
+</script>
 
 
 
