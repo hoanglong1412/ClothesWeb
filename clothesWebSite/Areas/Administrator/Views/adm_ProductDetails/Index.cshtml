@@ -1,0 +1,55 @@
+﻿@model IEnumerable<clothesWebSite.Models.ProductDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Product Details</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            Product Type Id
+        </th>
+        <th>
+            Size
+        </th>
+        <th>
+            Color
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.type_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.product_detail_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.product_detail_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.product_detail_id })
+            </td>
+        </tr>
+    }
+
+</table>

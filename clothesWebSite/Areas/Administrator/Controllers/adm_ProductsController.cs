@@ -17,6 +17,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         // GET: Admin/adm_Products
         public ActionResult Index()
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             var products = db.Products.Include(p => p.ProductType);
             return View(products.ToList());
         }
@@ -24,6 +27,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         // GET: Admin/adm_Products/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +45,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         // GET: Admin/adm_Products/Create
         public ActionResult Create()
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             ViewBag.type_id = new SelectList(db.ProductTypes, "type_id", "type_name");
             return View();
         }
@@ -50,6 +59,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "product_id,type_id,product_name,sale_price,import_price,count_views,total_rating,count_rating,content,state,last_update,create_day,image_name")] Product product)
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
@@ -64,6 +76,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         // GET: Admin/adm_Products/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +99,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "product_id,type_id,product_name,sale_price,import_price,count_views,total_rating,count_rating,content,state,last_update,create_day,image_name")] Product product)
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
@@ -97,6 +115,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         // GET: Admin/adm_Products/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +135,9 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["taikhoanadmin"] == null)
+                return RedirectToAction("Login", "adm_MainPage");
+
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();

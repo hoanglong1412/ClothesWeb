@@ -1,0 +1,59 @@
+﻿@model clothesWebSite.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2><br />
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Content
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            Last Update
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_update)
+        </dd>
+
+        <dt>
+            State
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            Post Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.post_type)
+        </dd>
+
+        <dt>
+            Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.post_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<clothesWebSite.Models.PaymentDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Payment Details</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            Payment Deliver Name
+        </th>
+        <th>
+            Product Type Id
+        </th>
+        <th>
+            Size
+        </th>
+        <th>
+            Color
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payment.deliver_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.type_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ordinal_number }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ordinal_number }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ordinal_number })
+            </td>
+        </tr>
+    }
+
+</table>

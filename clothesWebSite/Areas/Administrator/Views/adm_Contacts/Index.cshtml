@@ -1,0 +1,73 @@
+﻿@model IEnumerable<clothesWebSite.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Contacts</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            Sender Full Name
+        </th>
+        <th>
+            Sender Phone
+        </th>
+        <th>
+            Sender Email
+        </th>
+        <th>
+            Content
+        </th>
+        <th>
+            Contact Type
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Create Date
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sender_full_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sender_phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sender_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contact_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.create_date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.contact_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.contact_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.contact_id })
+            </td>
+        </tr>
+    }
+
+</table>

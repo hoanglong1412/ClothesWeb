@@ -1,0 +1,61 @@
+﻿@model IEnumerable<clothesWebSite.Models.Banner>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Banners</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            State
+        </th>
+        <th>
+            From Date
+        </th>
+        <th>
+            To Date
+        </th>
+        <th>
+            Create Date
+        </th>
+        <th>
+            Url
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.from_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.to_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.create_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.url)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.banner_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.banner_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.banner_id })
+            </td>
+        </tr>
+    }
+
+</table>

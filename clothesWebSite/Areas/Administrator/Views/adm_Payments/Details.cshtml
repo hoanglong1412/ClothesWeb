@@ -1,0 +1,99 @@
+﻿@model clothesWebSite.Models.Payment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2><br />
+
+<div>
+    <h4>Payment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            User Full Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.full_name)
+        </dd>
+
+        <dt>
+            Create Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            Deliver Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliver_date)
+        </dd>
+
+        <dt>
+            Deliver Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliver_name)
+        </dd>
+
+        <dt>
+            State
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            Pay Way
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payway)
+        </dd>
+
+        <dt>
+            Deliver Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deliver_type)
+        </dd>
+
+        <dt>
+            Address Deliver
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address_deliver)
+        </dd>
+
+        <dt>
+            Phone Receiver
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone_receiver)
+        </dd>
+
+        <dt>
+            Name Receiver
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_receiver)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.payment_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

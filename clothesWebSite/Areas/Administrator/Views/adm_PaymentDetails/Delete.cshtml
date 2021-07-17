@@ -1,0 +1,73 @@
+﻿@model clothesWebSite.Models.PaymentDetail
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Delete</h2><br />
+
+<h3 style="color: red">Are you sure you want to delete this?</h3>
+<div>
+    <h4>Payment Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Payment Deliver Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment.deliver_name)
+        </dd>
+
+        <dt>
+            Product Type Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.type_id)
+        </dd>
+
+        <dt>
+            Size
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.size)
+        </dd>
+
+        <dt>
+            Color
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.color)
+        </dd>
+
+        <dt>
+            Quantity
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
