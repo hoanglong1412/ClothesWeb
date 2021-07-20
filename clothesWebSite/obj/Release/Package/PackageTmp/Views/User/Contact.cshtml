@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Clothes")">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">Contact</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <!--
+                    *** PAGES MENU ***
+                    _________________________________________________________
+                    -->
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Pages</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav nav-pills flex-column">
+                                <li><a href="@Url.Action("TextPage","User")" class="nav-link">Text page</a></li>
+                                <li><a href="@Url.Action("Contact","User")" class="nav-link">Contact page</a></li>
+                                <li><a href="@Url.Action("Faq","User")" class="nav-link">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- *** PAGES MENU END ***-->
+                    <div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>
+                </div>
+                <div class="col-lg-9">
+                    <div id="contact" class="box">
+                        <h1>Contact</h1>
+                        <p class="lead text-danger">@ViewBag.success</p>
+                        <p class="lead">Are you curious about something? Do you have some kind of problem with our products?</p>
+                        <p>Please feel free to contact us, our customer service center is working for you 24/7.</p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3><i class="fa fa-map-marker"></i>Address</h3>
+                                <p>475 Dien Bien Phu<br>Phuong 25<br>Binh Thanh<br>Ho Chi Minh<br><strong>Viet Nam</strong></p>
+                            </div>
+                            <!-- /.col-sm-4-->
+                            <div class="col-md-4">
+                                <h3><i class="fa fa-phone"></i> Call center</h3>
+                                <p class="text-muted">This number is toll free if calling from Great Britain otherwise we advise you to use the electronic form of communication.</p>
+                                <p><strong>+84 123 456 789</strong></p>
+                            </div>
+                            <!-- /.col-sm-4-->
+                            <div class="col-md-4">
+                                <h3><i class="fa fa-envelope"></i> Electronic support</h3>
+                                <p class="text-muted">Please feel free to write an email to us or to use our electronic ticketing system.</p>
+                                <ul>
+                                    <li><strong><a href="mailto:">hutech@gmail.com</a></strong></li>
+                                    <li><strong><a href="#">HUTECH</a></strong> - our ticketing support platform</li>
+                                </ul>
+                            </div>
+                            <!-- /.col-sm-4-->
+                        </div>
+                        <!-- /.row-->
+                        <hr>
+                        <iframe style="width: 100%;border:unset;filter:grayscale(2);" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1251208102735!2d106.71230301432061!3d10.801727892304388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVFAuSENN!5e0!3m2!1svi!2s!4v1624696570793!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <hr>
+                        <h2>Contact form</h2>
+                        <form action="@Url.Action("ContactConfirm","User")" method="post" onsubmit="submitSucess();">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Firstname</label>
+                                        <input id="firstname" type="text" class="form-control" name="first_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Lastname</label>
+                                        <input id="lastname" type="text" class="form-control" name="last_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email" class="form-control" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="subject">Phone</label>
+                                        <input id="subject" type="tel" pattern="[0-9]{8,11}" class="form-control" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea id="message" class="form-control" name="content" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send message</button>
+                                </div>
+                            </div>
+                            <!-- /.row-->
+                        </form>
+                    </div>
+                </div>
+                <!-- /.col-md-9-->
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var submitSucess = function () {
+        alert("We have received your message. Thanks for your support!");
+    }
+</script>

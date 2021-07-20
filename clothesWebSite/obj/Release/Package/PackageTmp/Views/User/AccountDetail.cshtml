@@ -1,0 +1,191 @@
+﻿
+
+@{
+    ViewBag.Title = "AccountDetail";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@using clothesWebSite.Models;
+@using clothesWebSite.DAO;
+@{
+    User user = (User)Session[UserDAO.KEY_USER];
+    String date_birth = null;
+    if (user.date_birth.HasValue)
+    {
+        date_birth = user.date_birth.Value.Date.ToString("yyyy-MM-dd");
+    }
+}
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Clothes")">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">My account</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <!--
+                    *** CUSTOMER MENU ***
+                    _________________________________________________________
+                    -->
+                    @Html.Action("customerSectionPartialView","User")
+                    <!-- /.col-lg-3-->
+                    <!-- *** CUSTOMER MENU END ***-->
+                </div>
+                <div class="col-lg-9">
+                    <div class="box">
+                        <h1>My account</h1>
+                        <p class="lead">Change your personal details or your password here.</p>
+                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                        <h3>Change password</h3>
+                        <form action="User/ChangePassword" method="post" onsubmit="onSubmitSuccess();">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password_old">Old password</label>
+                                        <input id="password_old" type="password" class="form-control" required onclick="openSubmit();">
+                                        <span id='wrong_password'></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password_1">New password</label>
+                                        <input name="password_1" id="password_1" type="password" class="form-control"
+                                               onkeyup="check_password();" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password_2">Retype new password</label>
+                                        <input id="password_2" type="password" class="form-control"
+                                               onkeyup="check_password();" required>
+                                        <span id='not_match'></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row-->
+                            <div class="col-md-12 text-center">
+                                <button id="submit1" type="submit"
+                                        onclick="check_exists_password();"
+                                        class="btn btn-primary">
+                                    <i class="fa fa-save"></i> Save new password
+                                </button>
+                            </div>
+                        </form>
+                        <h3 class="mt-5">Personal details</h3>
+                        <form action="User/UpdateBasicInfo" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="fullname">Fullname</label>
+                                        <input id="fullname" name="fullname" type="text" class="form-control" value="@user.full_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" name="email" type="email" class="form-control" value="@user.email">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input id="phone" name="phone" type="tel" pattern="[0-9]{6,11}" class="form-control" required
+                                               oninvalid="this.setCustomValidity('Phone format is not valid')"
+                                               oninput="this.setCustomValidity('')"
+                                               value="@user.phone">
+                                    </div>
+                                    <p class="text-danger"> @ViewBag.ErrorPhone</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="gender">Gender</label>
+                                        <select id="gender" name="gender" class="form-control">
+                                            @if (user.gender == UserDAO.MALE)
+                                            {
+                                                <option selected value="@UserDAO.MALE">Male</option>
+                                                <option value="@UserDAO.FEMALE">Female</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@UserDAO.MALE">Male</option>
+                                                <option selected value="@UserDAO.FEMALE">Female</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="datebirth">Date Birth</label>
+                                        <input id="datebirth" name="datebirth" type="date" class="form-control" value="@date_birth">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input id="address" name="address" type="text" class="form-control" value="@user.address">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save changes</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var check_password = function () {
+        if (document.getElementById('password_1').value != document.getElementById('password_2').value) {
+            document.getElementById('not_match').style.color = 'red';
+            document.getElementById('not_match').innerHTML = 'Password is not matching';
+            document.getElementById('submit1').disabled = true;
+        } else {
+            document.getElementById('not_match').innerHTML = '';
+            document.getElementById('submit1').disabled = false;
+        }
+    }
+
+    var check_exists_password = function () {
+        var password_type = String(document.getElementById('password_old').value);
+        var true_password = String(@user.password);
+        if (password_type != true_password) {
+            document.getElementById('wrong_password').style.color = 'red';
+            document.getElementById('wrong_password').innerHTML = 'Invalid password';
+            document.getElementById('submit1').disabled = true;
+        } else {
+            document.getElementById('wrong_password').innerHTML = '';
+            document.getElementById('submit1').disabled = false;
+        }
+    }
+
+    var openSubmit = function () {
+        document.getElementById('submit1').disabled = false;
+    }
+
+    var onSubmitSuccess = function () {
+        alert("Your password has changed. You need login again.");
+    }
+
+</script>
+

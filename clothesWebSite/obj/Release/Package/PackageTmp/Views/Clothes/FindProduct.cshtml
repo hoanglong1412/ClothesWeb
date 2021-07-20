@@ -1,0 +1,202 @@
+﻿@using clothesWebSite.Models
+@using clothesWebSite.DAO;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
+@{
+    ViewBag.Title = "FindProduct";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index")">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">Product</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-9">
+                    <div class="box">
+                        <h1>Product</h1>
+                        <p>Welcome to our Website hope you enjoy it and can get your favorite one.</p>
+                    </div>
+                    <div class="box info-bar">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-4 products-showing">Showing <strong>12</strong> of <strong>25</strong> products</div>
+                            <div class="col-md-12 col-lg-7 products-number-sort">
+                                <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
+                                    <div class="products-number">
+                                        <strong>Show</strong>
+                                        <a href="@Url.Action("FindProduct", new {id = ViewBag.id ,pageSize = 12 })" class="btn btn-outline-secondary btn-sm">12</a>
+                                        <a href="@Url.Action("FindProduct", new {id = ViewBag.id ,pageSize = 24 })" class="btn btn-outline-secondary btn-sm">24</a>
+                                        <a href="@Url.Action("FindProduct", new {id = ViewBag.id ,pageSize = ViewBag.countAll })" class="btn btn-outline-secondary btn-sm">All</a>
+                                        <span>products</span>
+                                    </div>
+                                    <div class="products-sort-by mt-2 mt-lg-0">
+                                        <strong>Sort by</strong>
+                                        <select name="sort-by" class="form-control">
+                                            <option>Price</option>
+                                            <option>Name</option>
+                                            <option>Sales first</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row products">
+                        @foreach (var item in Model)
+                        {
+
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front"><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})"><img src="~/img/product/@item.image_name" alt="" class="img-fluid"></a></div>
+                                        </div>
+                                    </div><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})" class="invisible"><img src="~/img/product/@item.image_name" alt="" class="img-fluid"></a>
+                                    <div class="text">
+                                        <h3><a href="@Url.Action("ProductDetail","Clothes", new{ id = item.product_id})">@item.product_name</a></h3>
+                                        <p class="price">
+                                            @if (ProductDAO.isSaleProduct(item))
+                                            {
+                                                <del>$@item.sale_price</del><text>$</text>@(item.sale_price - ProductDAO.getSalePrice(item))
+                                            }
+                                            else
+                                            {
+                                                @("$" + item.sale_price)
+                                            }
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    @if (ProductDAO.isHotProduct(item))
+                                    {
+                                        <div class="ribbon new">
+                                            <div class="theribbon">NEW</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+                                    @if (ProductDAO.isSaleProduct(item))
+                                    {
+                                        <div class="ribbon sale">
+                                            <div class="theribbon">SALE</div>
+                                            <div class="ribbon-background"></div>
+                                        </div>
+                                    }
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product            -->
+                            </div>
+                        }
+
+                        @* Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;*@
+                        <div class="pages col-12">
+                            @*<p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>*@
+                            <div class="my-pagination">
+                                @Html.PagedListPager(Model, Page => Url.Action("FindProduct", new {id = ViewBag.id , Page = Page, pageSize = ViewBag.itemshow }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-9-->
+                <div class="col-lg-3">
+                    <!--
+                    *** MENUS AND FILTERS ***
+                    _________________________________________________________
+                    -->
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Categories</h3>
+                        </div>
+                        @Html.Action("Category", new { GetType = 0 })
+
+                    </div>
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Brands <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Armani  (10)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Versace  (12)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Carlo Bruni  (15)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> Jack Honey  (14)
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 card-title">Colours <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"><span class="colour white"></span> White (14)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"><span class="colour blue"></span> Blue (10)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"><span class="colour green"></span>  Green (20)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"><span class="colour yellow"></span>  Yellow (13)
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"><span class="colour red"></span>  Red (10)
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- *** MENUS AND FILTERS END ***-->
+                    <div class="banner"><a href="#"><img src="img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

@@ -103,6 +103,7 @@ D:\ClothesWebProject\clothesWebSite\bin\Microsoft.Web.Infrastructure.dll
 D:\ClothesWebProject\clothesWebSite\bin\Newtonsoft.Json.dll
 D:\ClothesWebProject\clothesWebSite\bin\PagedList.dll
 D:\ClothesWebProject\clothesWebSite\bin\PagedList.Mvc.dll
+D:\ClothesWebProject\clothesWebSite\bin\PayPal.dll
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.Helpers.dll
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.Mvc.dll
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.Optimization.dll
@@ -116,6 +117,7 @@ D:\ClothesWebProject\clothesWebSite\bin\EntityFramework.SqlServer.xml
 D:\ClothesWebProject\clothesWebSite\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\ClothesWebProject\clothesWebSite\bin\PagedList.xml
 D:\ClothesWebProject\clothesWebSite\bin\PagedList.Mvc.xml
+D:\ClothesWebProject\clothesWebSite\bin\PayPal.xml
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.Helpers.xml
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.Mvc.xml
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.Optimization.xml
@@ -125,6 +127,7 @@ D:\ClothesWebProject\clothesWebSite\bin\System.Web.WebPages.Deployment.xml
 D:\ClothesWebProject\clothesWebSite\bin\System.Web.WebPages.Razor.xml
 D:\ClothesWebProject\clothesWebSite\bin\Newtonsoft.Json.xml
 D:\ClothesWebProject\clothesWebSite\bin\Antlr3.Runtime.pdb
+D:\ClothesWebProject\clothesWebSite\obj\Debug\clothesWebSite.csproj.AssemblyReference.cache
 D:\ClothesWebProject\clothesWebSite\obj\Debug\clothesWebSite.csproj.CoreCompileInputs.cache
 D:\ClothesWebProject\clothesWebSite\obj\Debug\clothesWebSite.csproj.CopyComplete
 D:\ClothesWebProject\clothesWebSite\obj\Debug\clothesWebSite.dll

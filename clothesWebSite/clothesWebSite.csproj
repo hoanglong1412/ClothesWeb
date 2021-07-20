@@ -63,6 +63,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -144,6 +147,8 @@
     <Compile Include="DAO\BannerDAO.cs" />
     <Compile Include="DAO\CartDAO.cs" />
     <Compile Include="DAO\ContactDAO.cs" />
+    <Compile Include="DAO\PaymentDAO.cs" />
+    <Compile Include="DAO\PaymentDetailDAO.cs" />
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DAO\ProductTypeDAO.cs" />
@@ -158,6 +163,7 @@
     <Compile Include="Models\MyDBContext.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\PaymentDetail.cs" />
+    <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductDetail.cs" />
@@ -2601,7 +2607,6 @@
     <Content Include="Views\Clothes\ProductDetail.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Clothes\ProductCategoty.cshtml" />
-    <Content Include="Views\Clothes\ProductAllCategoty.cshtml" />
     <Content Include="Views\Clothes\test.cshtml" />
     <Content Include="Views\Cart\CartPartialView.cshtml" />
     <Content Include="Views\Cart\viewCart.cshtml" />
@@ -2683,13 +2688,32 @@
     <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.ttf" />
     <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.woff" />
     <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.woff2" />
+    <Content Include="Views\Clothes\ProductSale.cshtml" />
+    <Content Include="Views\Clothes\AllPost.cshtml" />
+    <Content Include="Views\Clothes\AllProduct.cshtml" />
+    <Content Include="Views\Clothes\Category.cshtml" />
+    <Content Include="Views\Clothes\Error.cshtml" />
+    <Content Include="Views\Clothes\FindProduct.cshtml" />
+    <Content Include="Views\Clothes\PostDeitail.cshtml" />
+    <Content Include="Views\Cart\checkoutAddress.cshtml" />
+    <Content Include="Views\Cart\checkoutDeliveryMethod.cshtml" />
+    <Content Include="Views\Cart\checkoutPaymentMethod.cshtml" />
+    <Content Include="Views\Cart\FailurePaypal.cshtml" />
+    <Content Include="Views\Cart\OrderPreview.cshtml" />
+    <Content Include="Views\Cart\orderSummaryPartialView.cshtml" />
+    <Content Include="Views\User\AccountDetail.cshtml" />
+    <Content Include="Views\User\Contact.cshtml" />
+    <Content Include="Views\User\customerSectionPartialView.cshtml" />
+    <Content Include="Views\User\Faq.cshtml" />
+    <Content Include="Views\User\orderDetailHistory.cshtml" />
+    <Content Include="Views\User\orderHistory.cshtml" />
+    <Content Include="Views\User\TextPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="img\news\" />
     <Folder Include="vendor\font-awesome\less\" />
     <Folder Include="vendor\font-awesome\scss\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,0 +1,137 @@
+﻿@using clothesWebSite.DAO;
+@using clothesWebSite.Models
+@{
+    ViewBag.Title = "orderDetailHistory";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    User user = (User)Session["user"];
+    Payment payment = ViewBag.payMent as Payment;
+}
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index","Clothes")">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item">My orders</li>
+                            <li aria-current="page" class="breadcrumb-item active">Order # 1735</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <!--
+                    *** CUSTOMER MENU ***
+                    _________________________________________________________
+                    -->
+                    @Html.Action("customerSectionPartialView", "User")
+
+                    <!-- /.col-lg-3-->
+                    <!-- *** CUSTOMER MENU END ***-->
+                </div>
+                <div id="customer-order" class="col-lg-9">
+                    <div class="box">
+                        <h1>Order #@ViewBag.payMent.payment_id</h1>
+                        <p class="lead">
+                            Order #@ViewBag.payMent.payment_id was placed on <strong>@ViewBag.payMent.create_date</strong> and is currently  <strong>
+                                @if (ViewBag.payMent.state == 0)
+                                {
+                                    <span>Cancelled</span>
+                                }
+                                else if (ViewBag.payMent.state == 1)
+                                {
+                                    <span> On hold</span>
+                                }
+                                else if (ViewBag.payMent.state == 2)
+                                {
+                                    <span> Being prepared</span>
+                                }
+                                else if (ViewBag.payMent.state == 3)
+                                {
+                                    <span> On way</span>
+                                }
+                                else if (ViewBag.payMent.state == 4)
+                                {
+                                    <span> Received</span>
+                                }
+                                else
+                                {
+                                    <span> @ViewBag.payMent.state</span>
+                                }
+                            </strong>.
+                        </p>
+                        <p class="text-muted">If you have any questions, please feel free to <a href="~/contact-us">contact us</a>, our customer service center is working for you 24/7.</p>
+                        <hr>
+                        <div class="table-responsive mb-4">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Product</th>
+                                        <th>Quantity</th>
+                                        <th>Unit price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("ProductDetail","Clothes", new { id = item.Product.product_id })"><img src="~/img/product/@item.Product.image_name" alt="@item.Product.product_name"></a></td>
+                                            <td><a href="@Url.Action("ProductDetail","Clothes", new { id = item.Product.product_id })">@item.Product.product_name</a></td>
+                                            <td>@item.quantity</td>
+                                            <td>$@item.price.00</td>
+                                            @{ double total = item.quantity * item.price;}
+                                            <td>@total.00</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="5" class="text-right">Order subtotal</th>
+                                        @{ double totalPrice = PaymentDAO.getTotalPrice(ViewBag.payMent);}
+                                        <th>$@PaymentDAO.getTotalPrice(ViewBag.payMent).00</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="5" class="text-right">Shipping and handling</th>
+                                        <th>$10.00</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="5" class="text-right">Tax</th>
+                                        <th>$0.00</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="5" class="text-right">Total</th>
+                                        @if (!payment.payway.Equals(PaymentDAO.PAYPAL))
+                                        {
+                                            <th>$@(totalPrice+10).00</th>
+                                        }
+                                        else
+                                        {
+                                            <th class="price">
+                                                <del>$@(totalPrice+10).00</del>
+                                                <text>was paid by @payment.payway</text>
+                                            </th>
+                                        }
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive-->
+                        <div class="row addresses">
+                            <div class="col-lg-6">
+                                <h2>Invoice address</h2>
+                                <p>@user.address</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <h2>Shipping address</h2>
+                                <p> @ViewBag.payMent.address_deliver</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

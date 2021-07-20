@@ -13,6 +13,11 @@ namespace clothesWebSite.Areas.Administrator.Controllers
         // GET: Admin/adm_MainPage
         public ActionResult Index()
         {
+            if(Session["taikhoanadmin"]==null)
+            {
+                return RedirectToAction("Login","adm_MainPage");
+            }
+            else
             return View();
         }
         [HttpGet]
