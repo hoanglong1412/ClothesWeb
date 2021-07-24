@@ -1,0 +1,70 @@
+﻿@model clothesWebSite.Models.Banner
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Edit</h2><br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Banner</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.banner_id)
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> State </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> From Date </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.from_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.from_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> To Date </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.to_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.to_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Create Date </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.create_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.create_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Url </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.url, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.url, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

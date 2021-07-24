@@ -1,0 +1,108 @@
+﻿@model clothesWebSite.Models.Payment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Create</h2><br />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Payment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="control-label col-md-2"> User Id </div>
+            <div class="col-md-10">
+                @Html.DropDownList("user_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Create Date </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.create_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.create_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Deliver Date </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deliver_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.deliver_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Deliver Name </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deliver_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.deliver_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> State </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Pay Way </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.payway, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.payway, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Deliver Type</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deliver_type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.deliver_type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Address Deliver </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address_deliver, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address_deliver, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Phone Receiver </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone_receiver, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone_receiver, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Name Receiver </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name_receiver, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name_receiver, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

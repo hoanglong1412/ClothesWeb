@@ -1,0 +1,73 @@
+﻿@model IEnumerable<clothesWebSite.Models.Discount>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Discounts</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            From Date
+        </th>
+        <th>
+            To Date
+        </th>
+        <th>
+            Discount by Price
+        </th>
+        <th>
+            Discount by Ratio
+        </th>
+        <th>
+            Content
+        </th>
+        <th>
+            Last Update
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.from_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.to_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_by_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_by_ratio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.last_update)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.discount_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.discount_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.discount_id })
+            </td>
+        </tr>
+    }
+
+</table>

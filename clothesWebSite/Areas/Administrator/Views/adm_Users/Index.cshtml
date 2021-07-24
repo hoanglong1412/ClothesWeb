@@ -1,0 +1,84 @@
+﻿@model IEnumerable<clothesWebSite.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Users</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            User Role
+        </th>
+        <th>
+            Full Name
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+            Date of Birth
+        </th>
+        <th>
+            Create Date
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user_role)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.full_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_birth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.create_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.user_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.user_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.user_id })
+        </td>
+    </tr>
+}
+
+</table>

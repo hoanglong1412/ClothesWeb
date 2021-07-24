@@ -5,131 +5,97 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Products</h2>
+<h2>Products</h2><br />
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Projects</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType.type_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sale_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.import_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_views)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total_rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_update)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.create_day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image_name)
+        </th>
+        <th></th>
+    </tr>
 
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    <div class="card-body p-0">
-        <table class="table table-striped projects">
-            <thead>
-
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ProductType.type_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.product_name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.sale_price)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.import_price)
-                    </th>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.count_views)
-                        </th>*@
-                    <th>
-                        @Html.DisplayNameFor(model => model.total_rating)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.count_rating)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.content)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.state)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.last_update)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.create_day)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.image_name)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductType.type_name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.product_name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.sale_price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.import_price)
-                        </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.count_views)
-                            </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.total_rating)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.count_rating)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.content)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.state)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.last_update)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.create_day)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.image_name)
-                        </td>
-                        <td>
-                            <a class="btn btn-primary btn-sm" href="@Url.Action( "Details", new { id = item.product_id })">
-                                <i class="fas fa-folder">
-                                </i>
-                                Details
-                            </a>
-                            <a class="btn btn-info btn-sm" href="@Url.Action( "Edit", new { id = item.product_id })">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm" href="@Url.Action( "Delete", new { id = item.product_id })">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
-                            @*@Html.ActionLink("Edit", "Edit", new { id = item.product_id }) |*@
-                            @*@Html.ActionLink("Details", "Details", new { id = item.product_id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.product_id })*@
-                        </td>
-                    </tr>
-                }
-            </tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductType.type_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sale_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.import_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count_views)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count_rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_update)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.create_day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.product_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.product_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.product_id })
+        </td>
+    </tr>
+}
 
         </table>
     </div>

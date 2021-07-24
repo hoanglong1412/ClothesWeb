@@ -57,6 +57,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -121,9 +124,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -138,8 +138,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_BannersController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_ContactsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_DiscountsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\adm_MainPageController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_PaymentDetailsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_PaymentsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_PostsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_ProductDetailsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\adm_ProductsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_ProductTypesController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\adm_UsersController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ClothesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2152,10 +2161,20 @@
     <Content Include="Areas\Administrator\Data\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\style.blue.css" />
@@ -2220,6 +2239,8 @@
     <Content Include="js\map.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -2231,16 +2252,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Areas\Administrator\Data\.github\codeql\codeql-config.yml" />
     <Content Include="Areas\Administrator\Data\.github\CONTRIBUTING.md" />
     <Content Include="Areas\Administrator\Data\.github\dependabot.yml" />
@@ -2433,11 +2444,78 @@
     <Content Include="Areas\Administrator\Data\build\scss\layouts\responsive.scss" />
     <Content Include="Areas\Administrator\Data\build\scss\style.scss" />
     <Content Include="Areas\Administrator\Views\adm_MainPage\Login.cshtml" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Administrator\Views\adm_Users\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Users\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Users\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Users\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Users\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Banners\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Banners\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Banners\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Banners\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Banners\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Contacts\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Contacts\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Contacts\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Contacts\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Contacts\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Discounts\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Discounts\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Discounts\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Discounts\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Discounts\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Payments\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Payments\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Payments\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Payments\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Payments\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Posts\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Posts\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Posts\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Posts\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_Posts\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_PaymentDetails\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_PaymentDetails\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_PaymentDetails\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_PaymentDetails\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_PaymentDetails\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductDetails\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductDetails\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductDetails\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductDetails\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductDetails\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductTypes\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductTypes\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductTypes\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductTypes\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\adm_ProductTypes\Index.cshtml" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -2717,8 +2795,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

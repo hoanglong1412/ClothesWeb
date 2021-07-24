@@ -1,0 +1,86 @@
+﻿@model clothesWebSite.Models.Contact
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Edit</h2><br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Contact</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.contact_id)
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Sender Full Name </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sender_full_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sender_full_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Sender Phone </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sender_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sender_phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Sender Email </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sender_email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sender_email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Content </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Contact Type </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.contact_type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.contact_type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> State </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"> Create Date </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.create_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.create_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<clothesWebSite.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Payments</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            User Full Name
+        </th>
+        <th>
+            Create Date
+        </th>
+        <th>
+            Deliver Date
+        </th>
+        <th>
+            Deliver Name
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Pay Way
+        </th>
+        <th>
+            Deliver Type
+        </th>
+        <th>
+            Address Deliver
+        </th>
+        <th>
+            Phone Receiver
+        </th>
+        <th>
+            Name Receiver
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.full_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.create_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deliver_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deliver_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.payway)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.deliver_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address_deliver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_receiver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name_receiver)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.payment_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.payment_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.payment_id })
+            </td>
+        </tr>
+    }
+
+</table>

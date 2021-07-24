@@ -1,0 +1,67 @@
+﻿@model clothesWebSite.Models.PaymentDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payment Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Payment Deliver Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment.deliver_name)
+        </dd>
+
+        <dt>
+            Product Type Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.type_id)
+        </dd>
+
+        <dt>
+            Size
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.size)
+        </dd>
+
+        <dt>
+            Color
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.color)
+        </dd>
+
+        <dt>
+            Quantity
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            Price
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ordinal_number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

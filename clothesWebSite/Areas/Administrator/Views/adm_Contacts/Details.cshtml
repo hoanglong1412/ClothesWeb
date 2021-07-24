@@ -1,0 +1,75 @@
+﻿@model clothesWebSite.Models.Contact
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2><br />
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Sender Full Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sender_full_name)
+        </dd>
+
+        <dt>
+            Sender Phone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sender_phone)
+        </dd>
+
+        <dt>
+            Sender Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sender_email)
+        </dd>
+
+        <dt>
+            Content
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            Contact Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact_type)
+        </dd>
+
+        <dt>
+            State
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            Create Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.contact_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,91 @@
+﻿@model clothesWebSite.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2><br />
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            User Role
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_role)
+        </dd>
+
+        <dt>
+            Full Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.full_name)
+        </dd>
+
+        <dt>
+            Phone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Password
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            Gender
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            Date of Birth
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_birth)
+        </dd>
+
+        <dt>
+            Create Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_date)
+        </dd>
+
+        <dt>
+            Address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<clothesWebSite.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Posts</h2><br />
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            Content
+        </th>
+        <th>
+            Last Update
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Post Type
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Optional
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.last_update)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.post_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.post_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.post_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.post_id })
+            </td>
+        </tr>
+    }
+
+</table>
